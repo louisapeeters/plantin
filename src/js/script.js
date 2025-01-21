@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
         dragImage.style.position = 'absolute';
         dragImage.style.zIndex = '9999';
 
+        dragImage.style.width = `${ring.offsetWidth}px`;
+        dragImage.style.height = `${ring.offsetHeight}px`;
+
         document.body.appendChild(dragImage);
         e.dataTransfer.setDragImage(dragImage, 30, 30);
 
@@ -23,39 +26,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.removeChild(dragImage);
         }, 0);
 
-        ring.style.opacity = '0'; 
+        ring.style.opacity = '0';
     });
 
     ring.addEventListener('dragend', function () {
-        ring.style.opacity = '1'; // Restore visibility after dragging
+        ring.style.opacity = '1';
     });
 
-    // ring.addEventListener('touchstart', function (e) {
-    //     e.preventDefault(); // Prevent default touch behavior to prioritize drag
-    //     const touch = e.touches[0];
-    //     const dragImage = ring.cloneNode(true);
-
-    //     dragImage.style.position = 'absolute';
-    //     dragImage.style.zIndex = '9999';
-    //     dragImage.style.width = `${ring.offsetWidth}px`;
-    //     dragImage.style.height = `${ring.offsetHeight}px`;
-
-    //     document.body.appendChild(dragImage);
-
-    //     // Position the drag image at the touch point
-    //     dragImage.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
-    //     dragImage.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
-
-    //     // Remove the clone after some time
-    //     setTimeout(() => {
-    //         document.body.removeChild(dragImage);
-    //     }, 0);
-
-    //     ring.style.opacity = '0';
-    // });
-
     hand.addEventListener('dragover', function (e) {
-        e.preventDefault(); // Enable dropping
+        e.preventDefault();
     });
 
     hand.addEventListener('drop', function (e) {
@@ -63,12 +42,59 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = e.dataTransfer.getData('text/plain');
 
         if (data === 'ring') {
-            ring.style.display = 'none'; // Hide the ring
+            ring.style.display = 'none';
 
-            hand.style.display = 'none'; // Hide the empty hand
-            marriedHand.style.display = 'block'; // Show the married hand
+            hand.style.display = 'none';
+            marriedHand.style.display = 'block';
 
             instructions.textContent = "You have successfully married them!";
+        }
+    });
+
+    let isDragging = false;
+
+    ring.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        isDragging = true;
+
+        const touch = e.touches[0];
+        ring.style.position = 'absolute';
+        ring.style.zIndex = '9999';
+        ring.style.opacity = '0.5';
+        ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
+        ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
+    });
+
+    ring.addEventListener('touchmove', function (e) {
+        if (!isDragging) return;
+
+        const touch = e.touches[0];
+        ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
+        ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
+    });
+
+    ring.addEventListener('touchend', function (e) {
+        isDragging = false;
+
+        const touch = e.changedTouches[0];
+        const dropX = touch.clientX;
+        const dropY = touch.clientY;
+
+        const handRect = hand.getBoundingClientRect();
+
+        if (
+            dropX >= handRect.left &&
+            dropX <= handRect.right &&
+            dropY >= handRect.top &&
+            dropY <= handRect.bottom
+        ) {
+            ring.style.display = 'none'; 
+            hand.style.display = 'none'; 
+            marriedHand.style.display = 'block'; 
+            instructions.textContent = "You have successfully married them!";
+        } else {
+            ring.style.position = 'static';
+            ring.style.opacity = '1';
         }
     });
 });

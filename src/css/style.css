@@ -361,6 +361,7 @@ h1 .red {
 }
 
 .antwerp__interaction img{
+    position: absolute;
     transform: rotate(85deg);
     max-width: 60px;
     z-index: 2; 
