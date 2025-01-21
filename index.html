@@ -15,28 +15,45 @@
 
 <body>
   <nav>
-    <img src="./src/assets/logo.svg" alt="logo plantin moretus museum">
+    <a href="https://museumplantinmoretus.be/en" target="_blank">
+      <picture>
+        <img sizes="(max-width: 190px) 100vw, 190px" srcset="
+            ./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_80.avif 80w,
+            ./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_190.avif 190w"
+          src="./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_190.avif" alt="Museum Plantin Moretus Logo">
+      </picture>
+    </a>
   </nav>
 
   <header class="hero">
-    <div class="header__image">
-      <img src="./src/assets/plantin.svg" alt="Portrait of Christophe Plantin" />
-      <p class="instructions">discover his story</p>
+    <div class="header__img">
+      <picture>
+        <img sizes="(max-width: 441px) 100vw, 441px" srcset="
+      ./src/assets/Plantin_cs2q3v_c_scale,w_250.avif 250w,
+      ./src/assets/Plantin_cs2q3v_c_scale,w_423.avif 423w,
+      ./src/assets/Plantin_cs2q3v_c_scale,w_441.avif 441w" src="./src/assets/Plantin_cs2q3v_c_scale,w_441.avif" alt="">
+      </picture>
     </div>
-    <h1><span class="red">P</span>lantin</h1>
-    <div class="hero__subtitle">
-      <p>48</p>
-      <p>HOURS in his LIFE</p>
-    </div>
-    <div class="hero__clock">
-      <img src="./src/assets/clock.svg" alt="Alarm clock illustration" />
-      <p class="instructions">click to start the day!</p>
+      <div class="hero__title">
+        <h1><span class="red">P</span>lantin</h1>
+        <div class="hero__subtitle">
+          <div class="subtitle__text">
+            <p><span class="red">48</span> HOURS<br> <span class="subtitle__regular">in his</span> <span class="subtitle__semi">LIFE</span></p>
+          </div>
+          <div class="subtitle__clock">
+            <img src="./src/assets/clock.svg" alt="Alarm clock illustration" />
+            <p class="instructions">click the clock to start the day!</p>
+          </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="birth">
-      <h2><span class="red">R</span>ise and <span class="red">S</span>hine</h2>
+      <div class="birth__title">
+        <h2><span class="red">R</span>ise and <span class="red">S</span>hine</h2>
+        <img src="./src/assets/baby.svg" alt="Portrait of a baby">
+      </div>
       <p class="birth__text">The sun rises over Tours, France, around 1517—though Plantin always insisted it was
         <strong>1520</strong>. "Easier to do the math," he'd
         joke. Baby <strong>Plantin is born</strong>. Life wasn't all sunshine and roses, though in that time. <strong>The
@@ -45,19 +62,20 @@
         to Paris and enrolled
         Christophe at the prestigious <strong>Sorbonne</strong>
       </p>
-      <img src="./src/assets/baby.svg" alt="Portrait of a baby">
     </section>
 
     <section class="apprentice">
-      <img src="./src/assets/heart.svg" alt="illustration of a heart">
-      <h2>Leather <div class="love red">
-          <div class="love__l">L</div>
-          <div class="love__o">O</div>
-          <div class="love__v">V</div>
-          <div class="love__e">E</div>
-        </div>
-        <span>and</span> leaving Cean
-      </h2>
+      <div class="apprentice__title">
+        <img src="./src/assets/heart.svg" alt="illustration of a heart">
+        <h2>Leather <div class="love red">
+            <div class="love__l">L</div>
+            <div class="love__o">O</div>
+            <div class="love__v">V</div>
+            <div class="love__e">E</div>
+          </div>
+          <span>and</span> <br> leaving Cean
+        </h2>
+      </div>
       <div class="apprentice__text">
         <p>By noon, tragedy strikes again: Christophe's father dies. Young Plantin is now an <strong>orphan</strong> with
           a knack for survival. He
@@ -239,8 +257,12 @@
   </main>
 
   <footer>
-    <img src="./src/assets/logo_white.svg" alt="plantin-moretus museum logo">
-    <h2>Want to discover more about PLANTIN and his printing house?</h2>
+  <picture>
+    <img sizes="(max-width: 184px) 100vw, 184px" srcset="
+    ./src/assets/white_logo_vcpxd3_c_scale,w_190.avif 190w,
+    ./src/assets/white_logo_vcpxd3_c_scale,w_184.avif 184w" src="./src/assets/white_logo_vcpxd3_c_scale,w_184.avif" alt="white logo of plantin moretus museum">
+  </picture>    
+  <h2>Want to discover more about PLANTIN and his printing house?</h2>
     <p class="footer__text">Come to the Plantin-moretus museum in Antwerp to discover more about his journey! There are
       special activities for
       families, but with our large archive it's also the perfect place for researchers, curious or history savvy people!
