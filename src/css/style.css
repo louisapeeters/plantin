@@ -83,6 +83,7 @@ h2,h3 {
 
 section {
     padding-block-start: 10vh;
+    padding-block-end: 3vh;
     padding-inline-start: 4vw;
     padding-inline-end: 4vw;
 }
@@ -197,6 +198,7 @@ h1 .red {
     align-items: center;
     width: 100%;
     gap: 4vh;
+    padding-block-end: 1vh;
 }
 
 .birth__title {
@@ -296,6 +298,7 @@ h1 .red {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding-block-end: 1vh;
 }
 
 .text__q {
@@ -304,9 +307,19 @@ h1 .red {
     font-weight: 500;
 }
 
+.text__q:hover {
+    text-decoration: underline;
+}
+
 .text__arrow {
     font-family: "inter";
     color: var(--t-titles);
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.question__text:hover .text__arrow {
+    transform: scaleX(1.5);
 }
 
 
@@ -368,6 +381,53 @@ h1 .red {
     position: relative;
     touch-action: none;
 }
+
+
+
+
+.night {
+    background-image: url('../assets/background_night.png');
+    background-repeat: no-repeat;
+    color: #FDF2E6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 2vh;
+    position: relative;
+}
+
+.night h2 {
+    line-height: 1.4;
+    align-self: flex-start;
+}
+
+.night__plantin {
+    max-width: 210px;
+    margin-block-start: -3rem;
+    align-self: center;
+}
+
+.night__attackers {
+    max-width: 810px;
+    transform: rotate(90deg);
+}
+
+.plantinBeaten, .attackers, .paragraph2 {
+    display: none;
+}
+
+.attackers {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0;
+}
+
+
+
 
 
 
