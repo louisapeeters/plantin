@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Crimson+Pro:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
 </head>
 
@@ -67,14 +67,18 @@
     <section class="apprentice">
       <div class="apprentice__title">
         <img src="./src/assets/heart.svg" alt="illustration of a heart">
-        <h2>Leather <div class="love red">
-            <div class="love__l">L</div>
-            <div class="love__o">O</div>
-            <div class="love__v">V</div>
-            <div class="love__e">E</div>
+          <div class="apprentice__title--text">
+            <div class="title__love">
+              <h2>Leather</h2>
+              <div class="love red">
+                <div class="love__l">L</div>
+                <div class="love__o">O</div>
+                <div class="love__v">V</div>
+                <div class="love__e">E</div>
+              </div>
+            </div>
+              <h3><span>and</span> <br> leaving Cean</h3>
           </div>
-          <span>and</span> <br> leaving Cean
-        </h2>
       </div>
       <div class="apprentice__text">
         <p>By noon, tragedy strikes again: Christophe's father dies. Young Plantin is now an <strong>orphan</strong> with
@@ -90,22 +94,27 @@
           to own a really nice goat. But Christophe has <strong>bigger plans</strong>, and Caen just isn't cutting it.</p>
       </div>
       <section class="question">
-        <div class="question__line">
-          <p>Want to know more about Plantin's family?</p>
-          <p>-></p>
+        <div class="question__text">
+          <p class="text__q">Want to know more about Plantin's family?</p>
+          <p class="text__arrow">-></p>
         </div>
       </section>
     </section>
 
     <section class="antwerp">
-      <img src="./src/assets/hand.svg" alt="Illustration of a pointing hand">
-      <img src="./src/assets/married_hand.svg" alt="illustration of a pointing hand with a ring on the finger">
+      <img class="antwerp__img" src="./src/assets/hand.svg" alt="Illustration of a pointing hand">
+      <picture class="antwerp__img">
+        <img sizes="(max-width: 700px) 100vw, 700px" srcset="
+      ./src/assets/married_hand_w6xvzu_c_scale,w_240.avif 240w,
+      ./src/assets/married_hand_w6xvzu_c_scale,w_469.avif 469w,
+      ./src/assets/married_hand_w6xvzu_c_scale,w_700.avif 700w" src="./src/assets/married_hand_w6xvzu_c_scale,w_700.avif" alt="">
+      </picture>
       <div class="antwerp__martina">
         <img src="./src/assets/martina.svg" alt="Portrait of Martina Plantin">
         <p>Martina Plantin</p>
       </div>
       <div class="antwerp__title">
-        <h2><span class="red">C</span>hristoffe <span class="red">L</span></h2>
+        <h2><span class="red title__c">C</span>hristoffe <span class="red title__l">L</span></h2>
       </div>
       <div class="antwerp__moretus">
         <img src="./src/assets/moretus.svg" alt="Portrait of Jan Moretus">
@@ -121,15 +130,22 @@
         take the reins of the
         family business.
       </p>
-      <img src="./src/assets/ring.svg" alt="image of a wedding ring">
+      <div class="antwerp__interaction">
+        <picture>
+          <img sizes="(max-width: 120px) 100vw, 120px" srcset="
+        ./src/assets/wedding_ring_xsa27e_c_scale,w_65.avif 65w,
+        ./src/assets/wedding_ring_xsa27e_c_scale,w_120.avif 120w" src="./src/assets/wedding_ring_xsa27e_c_scale,w_120.avif" alt="picture of a ring" draggable="true">
+        </picture>
+        <p class="instructions">drag and drop the ring on her finger to marry them</p>
+      </div>
       <section class="question">
-        <div class="question__line">
-          <p>Want to know more about Martina Plantin?</p>
-          <p>-></p>
+        <div class="question__text">
+          <p class="text__q">Want to know more about Martina Plantin?</p>
+          <p class="text__arrow">-></p>
         </div>
-        <div class="question__line">
-          <p>Want to know more about Jan Moretus?</p>
-          <p>-></p>
+        <div class="question__text">
+          <p class="text__q">Want to know more about Jan Moretus?</p>
+          <p class="text__arrow">-></p>
         </div>
       </section>
     </section>
@@ -175,9 +191,9 @@
       </div>
       <img src="./src/assets/sign.svg" alt="illustration of a sign with the emblem of plantin's printing house">
       <section class="question">
-        <div class="question__line">
-          <p>Want to know more about the building?</p>
-          <p>-></p>
+        <div class="question__text">
+          <p class="text__q">Want to know more about the building?</p>
+          <p class="text__arrow">-></p>
         </div>
       </section>
     </section>
@@ -203,9 +219,9 @@
         alt="Portrait of Plantin wth illustration of a baret, moustache and tears on his face">
       <p class="illustrations">see what's going on in Antwerp</p>
       <section class="question">
-        <div class="question__line">
-          <p>Want to know more about his equipment?</p>
-          <p>-></p>
+        <div class="question__text">
+          <p class="text__q">Want to know more about his equipment?</p>
+          <p class="text__arrow">-></p>
         </div>
       </section>
     </section>
