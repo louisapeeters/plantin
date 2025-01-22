@@ -195,3 +195,27 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const antwerp = document.querySelector(".raid__antwerp");
+    const paris = document.querySelector(".raid__paris");
+
+    antwerp.classList.add("visible");
+
+    antwerp.addEventListener("click", () => {
+        antwerp.classList.remove("visible");
+        paris.classList.add("visible");
+        antwerp.style.display = "none";
+        paris.style.display = "flex";
+    });
+
+    paris.addEventListener("click", () => {
+        paris.classList.remove("visible");
+        antwerp.classList.add("visible");
+        paris.style.display = "none"; 
+        antwerp.style.display = "flex";
+    });
+});
+
+
+

@@ -479,8 +479,12 @@ h3 {
     max-width: 75px;
 }
 
-.house__text {
+.house__text{
     padding-block-end: 5vh;
+}
+
+.house__text > :first-child{
+    padding-block-end: 3vh;
 }
 
 .house__text,
@@ -502,6 +506,60 @@ h3 {
     display: block;
 }
 
+
+
+
+
+.raid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+}
+
+.raid h2 {
+    line-height: 1.2;
+}
+
+.raid__text {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    padding-block-end: 8vh;
+}
+
+.raid__antwerp img{
+    max-width: 275px;
+}
+
+.raid__paris img {
+    max-width: 275px;
+}
+
+.raid__antwerp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.raid__paris {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.raid__paris {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
 
 
 
