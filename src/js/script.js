@@ -103,6 +103,7 @@ import TextPlugin from "gsap/TextPlugin";
     });
 
 
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const plantinSmall = document.querySelector('.plantinSmall');
@@ -111,78 +112,78 @@ const attackers = document.querySelector('.attackers');
 const paragraph1 = document.querySelector('.paragraph1');
 const paragraph2 = document.querySelector('.paragraph2');
 
-const timeline = gsap.timeline({
+gsap.timeline({
     scrollTrigger: {
         trigger: '.night',
         start: 'top top',
         end: '+=300%',
-        pin: true,
-        scrub: true,
+        pin: true,  
+        scrub: true, 
+    },
+})
+    .fromTo(
+        attackers,
+        {
+            y: window.innerHeight +100, 
+            autoAlpha: 1, 
+            rotate: 90,
+        },
+        {
+            y: 0, 
+            autoAlpha: 1, 
+            rotate: 90,
+            duration: 1, 
+        }
+    )
+    .to(attackers, {
+        y: '-100vh', 
+        autoAlpha: 0, 
+        rotate: 90,
+        duration: 1,
+    });
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: attackers,
+        start: 'top 10%', 
+        end: 'bottom center', 
+        scrub: true,  
+    },
+})
+    .to(plantinSmall, { autoAlpha: 0, duration: 0 }, '+=0.3') 
+    .set(plantinSmall, { display: 'none' }) 
+    .set(plantinBeaten, { display: 'block' }) 
+    .to(plantinBeaten, { autoAlpha: 1, duration: 0.5 }, '+=0.3'); 
+
+ScrollTrigger.create({
+    trigger: attackers,
+    start: 'top 75%',
+    end: 'top 60%',
+    scrub: true,
+    onEnter: () => {
+        gsap.to(paragraph1, {
+            onComplete: () => {
+                paragraph1.style.display = 'none';
+                paragraph2.style.display = 'block';
+                gsap.to(paragraph2, {
+                    text: { value: paragraph2.textContent, type: "type" },
+                    duration: 2
+                });
+            },
+        });
+    },
+    onLeaveBack: () => {
+        gsap.to(paragraph2, {
+            onComplete: () => {
+                paragraph2.style.display = 'none';
+                paragraph1.style.display = 'block';
+                gsap.to(paragraph1, { autoAlpha: 1, duration: 0.5 });
+            },
+        });
     },
 });
 
-timeline
-    .fromTo(
-        attackers,
-        { y: '100%', autoAlpha: 0 },
-        { y: '0%', autoAlpha: 1, duration: 1 }
-    )
-    .to(paragraph1, {
-        duration: 0.5,
-        text: { value: '', scrambleText: true },
-        onComplete: () => {
-            paragraph1.style.display = 'none';
-            paragraph2.style.display = 'block';
-        },
-    })
-    .fromTo(
-        paragraph2,
-        { autoAlpha: 0, text: { value: '' } },
-        {
-            autoAlpha: 1,
-            duration: 2,
-            text: { value: paragraph2.innerHTML, scrambleText: true },
-        },
-        '<' 
-    )
-    .to(plantinSmall, { autoAlpha: 0, duration: 0.1 })
-    .set(plantinSmall, { display: 'none' }) 
-    .set(plantinBeaten, { display: 'block' }) 
-    .to(plantinBeaten, { autoAlpha: 1, duration: 0.5 }) 
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const plantinSmall = document.querySelector('.plantinSmall');
-//     const plantinBeaten = document.querySelector('.plantinBeaten');
-//     const attackers = document.querySelector('.attackers');
-//     const paragraph1 = document.querySelector('.paragraph1');
-//     const paragraph2 = document.querySelector('.paragraph2');
-
-//     const timeline = gsap.timeline({
-//         scrollTrigger: {
-//             trigger: '.night',
-//             start: 'top top',
-//             end: '+=300%',
-//             pin: true,
-//             scrub: true,
-//         },
-//     });
-
-//     timeline
-//         .fromTo(
-//             attackers,
-//             { y: '100%', autoAlpha: 0 },
-//             { y: '0%', autoAlpha: 1, duration: 1 } 
-//         )
-//         .add(() => {
-//             paragraph1.style.display = 'none'; // Hide paragraph1
-//             paragraph2.style.display = 'block'; // Show paragraph2
-//             plantinSmall.style.display = 'none'; // Hide small Plantin
-//             plantinBeaten.style.display = 'block'; // Show beaten Plantin
-//         })
-//         .to(plantinBeaten, { autoAlpha: 1, duration: 0.5 }) // Fade in beaten Plantin
-//         .to(attackers, { autoAlpha: 0, duration: 0.5 }); // Fade out attackers
-// });
 
 document.addEventListener("DOMContentLoaded", () => {
     const house = document.querySelector(".house");

@@ -71,13 +71,14 @@ main {
     line-height: 140%;
 }
 
-a { 
+a {
     text-decoration: none;
     color: var(--t-primary);
     cursor: pointer;
 }
 
-h2,h3 {
+h2,
+h3 {
     font-family: var(--f-titles);
     font-size: clamp(1.5rem, 2rem + 0.5vw, 2.5rem);
 }
@@ -209,7 +210,7 @@ h1 .red {
     width: 100%;
 }
 
-.birth__title img{
+.birth__title img {
     max-width: 140px;
 }
 
@@ -228,7 +229,7 @@ h1 .red {
     align-items: center;
 }
 
-.apprentice__title h3{
+.apprentice__title h3 {
     padding-inline-start: 2.5rem;
 }
 
@@ -237,7 +238,8 @@ h1 .red {
     flex-direction: column;
 }
 
-.apprentice h2,h3 {
+.apprentice h2,
+h3 {
     line-height: 1.5;
 }
 
@@ -303,7 +305,7 @@ h1 .red {
 }
 
 .text__q {
-    font-size: clamp(0.8rem, 1rem + 0.2vw, 1.1rem);    
+    font-size: clamp(0.8rem, 1rem + 0.2vw, 1.1rem);
     color: var(--t-titles);
     font-weight: 500;
 }
@@ -374,11 +376,11 @@ h1 .red {
     padding-block-end: 5vh;
 }
 
-.antwerp__interaction img{
+.antwerp__interaction img {
     position: absolute;
     transform: rotate(85deg);
     max-width: 60px;
-    z-index: 2; 
+    z-index: 2;
     position: relative;
     touch-action: none;
 }
@@ -402,34 +404,30 @@ h1 .red {
 .night h2 {
     line-height: 1.4;
     align-self: flex-start;
+    padding-block-start: 2vh;
 }
 
 .night__plantin {
     max-width: 210px;
-    margin-block-start: -3rem;
+    margin-block-start: -2rem;
     align-self: center;
 }
 
-.night__attackers {
-    max-width: 810px;
-    transform: rotate(90deg);
-}
-
-.plantinBeaten, .attackers, .paragraph2 {
+.plantinBeaten,
+.paragraph2 {
     display: none;
 }
 
 .plantinBeaten {
-    margin-block-start: -3.5rem;
+    margin-block-start: -2.5rem;
 }
 
 .attackers {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 10;
     opacity: 0;
+    width: 100vw;
+    height: auto;
 }
 
 
