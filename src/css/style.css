@@ -55,6 +55,7 @@ html {
     color: var(--t-primary);
     padding-block-start: 3vh;
     background-image: url('../assets/background.png');
+    background-size: contain;
     background-color: #EEEEE8;
     overflow-x: hidden;
 }
@@ -387,6 +388,7 @@ h1 .red {
 
 .night {
     background-image: url('../assets/background_night.png');
+    background-size: cover;
     background-repeat: no-repeat;
     color: #FDF2E6;
     display: flex;
@@ -417,6 +419,10 @@ h1 .red {
     display: none;
 }
 
+.plantinBeaten {
+    margin-block-start: -3.5rem;
+}
+
 .attackers {
     position: absolute;
     bottom: 0;
@@ -424,6 +430,25 @@ h1 .red {
     transform: translateX(-50%);
     z-index: 10;
     opacity: 0;
+}
+
+
+
+
+
+.house .intructions {
+    color: var(--t-primary);
+}
+
+.house__opening {
+    max-width: 300px;
+}
+
+.house.active h2,
+.house.active .house__text,
+.house.sign,
+.house .question {
+    display: none;
 }
 
 

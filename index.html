@@ -184,8 +184,13 @@
     </section>
 
     <section class="house">
-      <img src="./src/assets/opening_printingHouse.svg"
-        alt="image of plantin moretus museum with illustration of a red reibbon on top">
+      <picture class="house__opening">
+        <img sizes="(max-width: 1289px) 100vw, 1289px" srcset="
+      ./src/assets/house_sbwjis_c_scale,w_370.avif 370w,
+      ./src/assets/house_sbwjis_c_scale,w_764.avif 764w,
+      ./src/assets/house_sbwjis_c_scale,w_1146.avif 1146w,
+      ./src/assets/house_sbwjis_c_scale,w_1289.avif 1289w" src="./src/assets/house_sbwjis_c_scale,w_1289.avif" alt="image of plantin moretus museum with illustration of a red ribbon on top">
+      </picture>
       <p class="instructions">click to open Plantin's printing house</p>
       <h2>Officina Plantiniana</h2>
       <div class="house__text">
@@ -205,7 +210,7 @@
           realises
           that printing is not just lucrative, it's <strong>hazardous</strong> to your social life.</p>
       </div>
-      <img src="./src/assets/sign.svg" alt="illustration of a sign with the emblem of plantin's printing house">
+      <img class="house__sign" src="./src/assets/sign.svg" alt="illustration of a sign with the emblem of plantin's printing house">
       <section class="question">
         <div class="question__text">
           <p class="text__q">Want to know more about the building?</p>

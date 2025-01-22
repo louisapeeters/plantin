@@ -184,3 +184,12 @@ timeline
 //         .to(attackers, { autoAlpha: 0, duration: 0.5 }); // Fade out attackers
 // });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const house = document.querySelector(".house");
+    const houseOpening = document.querySelector(".house__opening");
+
+    houseOpening.addEventListener("click", () => {
+        house.classList.add("active");
+    });
+});
+
