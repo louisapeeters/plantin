@@ -434,19 +434,72 @@ h3 {
 
 
 
-.house .intructions {
-    color: var(--t-primary);
+
+.house {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 4vh;
 }
 
 .house__opening {
-    max-width: 300px;
+    z-index: 1;
 }
 
-.house.active h2,
-.house.active .house__text,
-.house.sign,
-.house .question {
+.house .instructions {
+    color: var(--t-primary);
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+    width: 100vw;
+}
+
+.house h2 {
+    text-transform: uppercase;
+    color: var(--t-titles);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.house__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    padding-inline: 3vw;
+}
+
+.house__title img {
+    max-width: 75px;
+}
+
+.house__text {
+    padding-block-end: 5vh;
+}
+
+.house__text,
+.house__sign,
+.house .question,
+.house h2 {
     display: none;
+}
+
+.house.active .house__opening,
+.house.active .instructions {
+    display: none;
+}
+
+.house.active .house__text,
+.house.active .house__sign,
+.house.active .question,
+.house.active h2 {
+    display: block;
 }
 
 
