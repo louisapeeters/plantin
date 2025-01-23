@@ -1,7 +1,7 @@
 import "../css/reset.css";
 import "../css/style.css";
 
-import { DotLottie } from '@lottiefiles/dotlottie-web';
+// import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -9,12 +9,12 @@ import TextPlugin from "gsap/TextPlugin";
 
 
 
-new DotLottie({
-    autoplay: true,
-    loop: true,
-    canvas: document.querySelector(".title__heart"),
-    src: "..animations/heart.json",
-});
+// new DotLottie({
+//     autoplay: true,
+//     loop: true,
+//     canvas: document.querySelector(".title__heart"),
+//     src: "..animations/heart.json",
+// });
 
 
 const ring = document.querySelector('.antwerp__interaction img');

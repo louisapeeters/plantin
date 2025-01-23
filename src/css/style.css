@@ -217,6 +217,10 @@ h1 .red {
     max-width: 140px;
 }
 
+.birth__content img {
+    display: none;
+}
+
 
 
 
@@ -230,10 +234,7 @@ h1 .red {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.apprentice__title h3 {
-    padding-inline-start: 2.5rem;
+    gap: 5vw;
 }
 
 .apprentice__title--text {
@@ -241,15 +242,18 @@ h1 .red {
     flex-direction: column;
 }
 
-.apprentice h2,
-h3 {
+.apprentice h2 {
     line-height: 1.5;
 }
 
 .apprentice img {
-    transform: rotate(-26.14deg);
-    margin-inline-start: -2rem;
+    transform: rotate(-11deg);
+    margin-inline-start: -15vw;
     max-width: 135px;
+}
+
+.apprentice__content img {
+    display: none;
 }
 
 .title__love {
@@ -285,6 +289,12 @@ h3 {
     grid-area: 2 / 4 / 4 / 5;
 }
 
+.love__small {
+    font-family: var(--f-titles);
+    font-size: clamp(1.5rem, 2rem + 0.5vw, 2.5rem);
+    font-weight: 500;
+}
+
 .apprentice__text {
     display: flex;
     flex-direction: column;
@@ -292,7 +302,9 @@ h3 {
     padding-block-end: 8vh;
 }
 
-
+section .question {
+    padding-inline: 0vw;
+}
 
 .question {
     border-top: solid var(--t-titles) 2px;
@@ -755,10 +767,6 @@ button {
 }
 
 @media screen and (min-width: 768px) {
-    .header__img {
-        max-width: 400px;
-    }
-
     main {
         font-size: clamp(1rem, 1.25rem + 0.2vw, 1.25rem);
     }
@@ -771,10 +779,124 @@ button {
         font-size: clamp(1.2rem, 1.4rem + 0.2vw, 1.4rem);
     }
 
+    .question {
+        max-width: 50vw;
+        margin-inline-end: 2vw;
+    }
+
     nav img {
         max-width: 170px;
     }
 
+     .header__img {
+        max-width: 400px;
+    }
+
+    header {
+        display: flex;
+        flex-direction: row;
+    }
+
+    h1 {
+        font-size: clamp(4.8rem, 5.6rem + 0.2vw, 5.6rem);
+        margin-inline-start: -10vw;
+    }
+
+    h1 .red {
+        font-size: clamp(5rem, 6rem + 0.2vw, 6rem);
+    }
+
+    .subtitle__text {
+        font-size: clamp(3.5rem, 4.3rem + 0.2vw, 4.3rem);
+    }
+
+    .hero__subtitle {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 0vw;
+    }
+
+    .subtitle__clock {  
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+    }
+
+    .subtitle__clock .instructions{
+        padding-block-start: 1vh;
+        padding-block-end: 0vh;
+        max-width: 10rem;
+        font-size: clamp(1.2rem, 1.4rem + 0.2vw, 1.6rem);
+    }
+
+    .birth {
+        gap: 0vh;
+    }
+
+    .birth__title {
+        display: block;
+    }
+
+    .birth__content {
+        display: flex;
+        flex-direction: row;  
+        align-items: center;
+        gap: 2vw;
+    }
+
+    .birth__title img {
+        max-width: 250px;
+    }
+
+    .birth__content img {
+        display: block;
+    }
+
+    .birth__title img {
+        display: none;
+    }
+
+    .apprentice__title {
+        padding-block-end: 7vh;
+    }
+
+    .love {
+        font-size: clamp(4rem, 4.5rem + 0.2vw, 4.7rem);
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .apprentice__title--text {
+        text-align: center;
+    }
+
+    .title__love {
+        align-items: center;
+    }
+
+    .apprentice__text {
+        gap: 1.5vh;
+        padding-block-end: 5vh;
+    }
+
+    .apprentice__title img {
+        display: none;
+    }
+
+    .apprentice__content img {
+        display: block;
+        max-width: 330px;
+        margin-inline-start: -15vw;
+        margin-block-start: -23vh;
+    }
+
+    .apprentice__content {
+        display: flex;
+        gap: 5vw;
+    }
+
+    .apprentice .question {
+        align-self: flex-end;
+    }
 
 
 
