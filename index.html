@@ -225,12 +225,18 @@
       <h2><span class="red">H</span>eresy, <span class="red">H</span>eadaches, and a House Full of <span class="red">D</span>aughters</h2>
       <div class="raid__antwerp">
         <img src="./src/assets/antwerp.svg" alt="image of a gavel and illustrations of auction boards">
-        <p class="instructions">see what's going on in Paris</p>
+        <div class="raid__switch">
+          <img src="./src/assets/switch.svg" alt="switch on and off">
+          <p class="instructions">see what's going on in Paris</p>
+        </div>
       </div>
       <div class="raid__paris">
         <img src="./src/assets/paris.svg"
           alt="Portrait of Plantin wth illustration of a baret, moustache and tears on his face">
-        <p class="instructions">see what's going on in Antwerp</p>
+        <div class="raid__switch">
+          <img src="./src/assets/switch.svg" alt="switch on and off">
+          <p class="instructions">see what's going on in Antwerp</p>
+        </div>
       </div>
       <div class="raid__text">
         <p>By midday, things go south. The authorities <strong>raid</strong> Plantin's shop and accuse him of
@@ -254,12 +260,40 @@
       </section>
     </section>
 
-    <section>
+    <section class="botanic">
       <h2 class="visually-hidden">botanic</h2>
-      <img src="./src/assets/singleFlower_outline.svg" alt="black and white print of a plant">
-      <img src="./src/assets/singleFlower.svg" alt="coloured print of a plant">
-      <img src="./src/assets/flower_outline.svg" alt="black and white print of a plant">
-      <img src="./src/assets/flower.svg" alt="coloured print of a plant">
+      <div class="botanic__single">
+        <picture class="single__colour">
+          <img sizes="(max-width: 400px) 100vw, 400px" srcset="
+                ./src/assets/single_colour_qmbbij_c_scale,w_150.avif 150w,
+                ./src/assets/single_colour_qmbbij_c_scale,w_389.avif 389w,
+                ./src/assets/single_colour_qmbbij_c_scale,w_400.avif 400w"
+            src="./src/assets/single_colour_qmbbij_c_scale,w_400.avif" alt="coloured print of a plant">
+        </picture>
+        <picture class="single__black">
+          <img sizes="(max-width: 400px) 100vw, 400px" srcset="
+        ./src/assets/single_black_cfdfep_c_scale,w_150.avif 150w,
+        ./src/assets/single_black_cfdfep_c_scale,w_371.avif 371w,
+        ./src/assets/single_black_cfdfep_c_scale,w_400.avif 400w" src="./src/assets/single_black_cfdfep_c_scale,w_400.avif" alt="black and white print of a plant">
+        </picture>
+      </div>
+      <div class="botanic__flower">
+        <picture class="flower__colour">
+          <img sizes="(max-width: 356px) 100vw, 356px" srcset="
+                ./src/assets/flower_colour_taqodz_c_scale,w_200.avif 200w,
+                ./src/assets/flower_colour_taqodz_c_scale,w_260.avif 260w,
+                ./src/assets/flower_colour_taqodz_c_scale,w_336.avif 336w,
+                ./src/assets/flower_colour_taqodz_c_scale,w_356.avif 356w"
+            src="./src/assets/flower_colour_taqodz_c_scale,w_356.avif" alt="coloured print of a plant">
+        </picture>
+        <picture class="flower__black">
+          <img sizes="(max-width: 356px) 100vw, 356px" srcset="
+        ./src/assets/flower_black_dzkpha_c_scale,w_200.avif 200w,
+        ./src/assets/flower_black_dzkpha_c_scale,w_265.avif 265w,
+        ./src/assets/flower_black_dzkpha_c_scale,w_336.avif 336w,
+        ./src/assets/flower_black_dzkpha_c_scale,w_356.avif 356w" src="./src/assets/flower_black_dzkpha_c_scale,w_356.avif" alt="black and white print of a plant">
+        </picture>
+      </div>
       <p class="botanic__text">Plantin pours his energy into the <strong>monumental botanical</strong> and technical
         masterpiece, Dodoens's botanical book. The
         <strong>illustrations</strong> in these books are extraordinary, what started as a modest 1,309
@@ -267,35 +301,67 @@
         2,178, because who's counting? These aren't just books; they're the 16th-century equivalent of NFTs—except these
         actually serve a purpose. The books are so <strong>valuable</strong>, uncoloured editions are priced at eight
         guilders, and the
-        hand-coloured versions go for an eye-watering <strong>118 guilders</strong>.
+        hand-coloured versions go for an eye-watering <strong>118 guilders</strong>. <br>
         Why the high price? Well, the painstaking manual colouring process adds value, making them a
         <strong>luxury</strong> far beyond the reach
         of your average worker—unless they were paid hush money by the 16th-century version of Donald Trump.
       </p>
-      <img src="./src/assets/poppy_outline.svg" alt="black and white print of a plant">
-      <img src="./src/assets/poppy.svg" alt="coloured print of a plant">
+      <div class="botanic__poppy">
+        <picture>
+          <img sizes="(max-width: 336px) 100vw, 336px" srcset="
+                ./src/assets/poppy_colour_pj3tkw_c_scale,w_180.avif 180w,
+                ./src/assets/poppy_colour_pj3tkw_c_scale,w_238.avif 238w,
+                ./src/assets/poppy_colour_pj3tkw_c_scale,w_316.avif 316w,
+                ./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif 336w"
+            src="./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif" alt="coloured print of a plant">
+        </picture>
+        <picture class="poppy__black">
+          <img sizes="(max-width: 336px) 100vw, 336px" srcset="
+        ./src/assets/poppy_black_vhas30_c_scale,w_180.avif 180w,
+        ./src/assets/poppy_black_vhas30_c_scale,w_248.avif 248w,
+        ./src/assets/poppy_black_vhas30_c_scale,w_304.avif 304w,
+        ./src/assets/poppy_black_vhas30_c_scale,w_336.avif 336w" src="./src/assets/poppy_black_vhas30_c_scale,w_336.avif" alt="black and white print of a plant">
+        </picture>
+      </div>
       <p class="instructions">drag the paint brush to the illustrations to colour it in</p>
     </section>
 
     <section class="death">
-      <img src="./src/assets/sleeping.svg" alt="Portrait of Plantin with an illustration of a pillow behind his head">
-      <h2> <span>H</span>is final chapter</h2>
-      <div class="death__text">
-        <p>As the night rolls in at the end of this day, Christoffel Plantin's remarkable journey nears its
-          <strong>end</strong>. Surrounded by his
-          family and the fruits of his labor, he <strong>passes away peacefully</strong>.
-        </p>
-        <p>His death marks the end of an era, but his <strong>legacy</strong> endures through the presses, the countless
-          books he printed, and the
-          thriving business he built. Plantin's printing house was not just a workshop; it was a
-          <strong>revolutionary</strong> force in the
-          dissemination of knowledge. <br>
-          Through his dedication and craftsmanship, he helped to change the course of <strong>history</strong>, making
-          books more accessible and
-          changing the landscape of education and communication. His name, <strong>immortalised</strong> in the annals of
-          printing and publishing,
-          will forever be remembered for his <strong>transformative</strong> impact on the world.
-        </p>
+      <div class="death__img">
+        <picture class="death__img--sleeping">
+          <img sizes="(max-width: 694px) 100vw, 694px" srcset="
+        ./src/assets/sleeping_ej5u2c_c_scale,w_280.avif 280w,
+        ./src/assets/sleeping_ej5u2c_c_scale,w_481.avif 481w,
+        ./src/assets/sleeping_ej5u2c_c_scale,w_632.avif 632w,
+        ./src/assets/sleeping_ej5u2c_c_scale,w_694.avif 694w" src="./src/assets/sleeping_ej5u2c_c_scale,w_694.avif" alt="Portrait of Plantin with an illustration of a pillow behind his head">
+        </picture>
+        <!-- <picture class="death__img--death">
+          <img sizes="(max-width: 694px) 100vw, 694px" srcset="
+        ./src/assets/death_mvqytf_c_scale,w_280.avif 280w,
+        ./src/assets/death_mvqytf_c_scale,w_453.avif 453w,
+        ./src/assets/death_mvqytf_c_scale,w_635.avif 635w,
+        ./src/assets/death_mvqytf_c_scale,w_694.avif 694w" src="./src/assets/death_mvqytf_c_scale,w_694.avif" alt="black and white portrait of Plantin with an illustration of a pillow behind his head">
+        </picture> -->
+      </div>
+      <div class="death__sheet">
+        <h2> <span class="red">H</span>is final chapter</h2>
+        <div class="death__text">
+          <p>As the night rolls in at the end of this day, Christoffel Plantin's remarkable journey nears its
+            <strong>end</strong>. Surrounded by his
+            family and the fruits of his labor, he <strong>passes away peacefully</strong>.
+          </p>
+          <p>His death marks the end of an era, but his <strong>legacy</strong> endures through the presses, the countless
+            books he printed, and the
+            thriving business he built. Plantin's printing house was not just a workshop; it was a
+            <strong>revolutionary</strong> force in the
+            dissemination of knowledge. <br>
+            Through his dedication and craftsmanship, he helped to change the course of <strong>history</strong>, making
+            books more accessible and
+            changing the landscape of education and communication. His name, <strong>immortalised</strong> in the annals of
+            printing and publishing,
+            will forever be remembered for his <strong>transformative</strong> impact on the world.
+          </p>
+        </div>
       </div>
     </section>
   </main>

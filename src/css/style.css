@@ -81,6 +81,7 @@ h2,
 h3 {
     font-family: var(--f-titles);
     font-size: clamp(1.5rem, 2rem + 0.5vw, 2.5rem);
+    font-weight: 500;
 }
 
 section {
@@ -97,15 +98,17 @@ section {
 .instructions {
     font-family: var(--f-instructions);
     font-weight: var(--weight-bold);
-    color: var(--t-stamp);
+    color: var(--t-titles);
     font-size: clamp(1rem, 1.2rem + 0.2vw, 1.4rem);
-
+    /* background-image: url('../assets/highlight.svg');
+    background-repeat: no-repeat;
+    background-size: cover; */
+    padding-inline: 1vw;
+    padding-block: 1vh;
 }
 
 strong {
-    text-decoration: underline;
-    text-decoration-color: var(--t-stamp);
-    text-decoration-thickness: 0.1rem;
+    color: var(--t-titles);
 }
 
 nav img {
@@ -430,6 +433,10 @@ h3 {
     height: auto;
 }
 
+.night strong {
+    color: #eb5062;
+}
+
 
 
 
@@ -530,11 +537,11 @@ h3 {
 }
 
 .raid__antwerp img{
-    max-width: 275px;
+    max-height: 275px;
 }
 
 .raid__paris img {
-    max-width: 275px;
+    max-height: 275px;
 }
 
 .raid__antwerp {
@@ -557,9 +564,143 @@ h3 {
     display: none;
 }
 
+.raid__switch {
+    display: flex;
+    gap: 5vw;
+}
+
+.raid__switch img {
+    max-width: 50px;
+}
+
+.raid__paris .raid__switch img {
+    transform: scaleX(-1);
+}
+
 .visible {
     display: flex;
 }
+
+
+
+
+
+
+.botanic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    cursor: url('../assets/brush.svg'), auto;
+    position: relative;
+}
+
+.botanic__single {
+    position: relative;
+    width: 100%;
+    padding-block-end: 8vh;
+    padding-block-start: 20vh;
+}
+
+.single__black {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.single__black,
+.single__colour {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    height: auto;
+    overflow: hidden;
+}
+
+.single__colour {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.2s ease-out, clip-path 0.1s ease-out;
+    clip-path: circle(0% at 50% 50%);
+}
+
+.botanic__flower,
+.botanic__poppy {
+    display: none;
+}
+
+.botanic .instructions {
+    max-width: 50%;
+    align-self: flex-end;
+}
+
+
+
+
+
+
+.death {
+    position: relative;
+    overflow: hidden;
+    padding-inline: 0vw;
+    margin-block-end: 20vh;
+    margin-block-start: 15vh;
+}
+
+.death__sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    background-image: url('../assets/sheet.avif');
+    background-size: cover;
+    padding-block: 10vh;
+    padding-inline: 6vh;
+    position: relative;
+    z-index: 2;
+}
+
+.death__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+}
+
+ .death img {
+    max-width: 270px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    /*background-image: url('../assets/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;*/
+}
+
+/* .death__img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+} */
+
 
 
 
