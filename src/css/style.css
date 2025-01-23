@@ -755,6 +755,33 @@ button {
 }
 
 @media screen and (min-width: 768px) {
+    .header__img {
+        max-width: 400px;
+    }
+
+    main {
+        font-size: clamp(1rem, 1.25rem + 0.2vw, 1.25rem);
+    }
+
+    h2,h3 {
+        font-size: clamp(2.5rem, 3rem + 0.2vw, 3rem);
+    }
+
+    .instructions {
+        font-size: clamp(1.2rem, 1.4rem + 0.2vw, 1.4rem);
+    }
+
+    nav img {
+        max-width: 170px;
+    }
+
+
+
+
+
+    
+
+
     footer {
         padding-block-start: 4vh;
     }

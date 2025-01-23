@@ -12,6 +12,7 @@
     "vite": "^6.0.5"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.39.0",
     "dragula": "^3.7.3",
     "gsap": "^3.12.7",
     "interactjs": "^1.10.27"
