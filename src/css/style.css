@@ -82,6 +82,7 @@ h3 {
     font-family: var(--f-titles);
     font-size: clamp(1.5rem, 2rem + 0.5vw, 2.5rem);
     font-weight: 500;
+    line-height: 1.1;
 }
 
 section {
@@ -185,6 +186,29 @@ h1 .red {
     max-width: 85px;
     justify-self: end;
     transform: rotate(4.14deg);
+    /* animation: ring 0.4s infinite; */
+}
+
+@keyframes ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .subtitle__clock .instructions {
@@ -196,29 +220,42 @@ h1 .red {
 
 
 
+
+
+
 .birth {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 4vh;
-    padding-block-end: 1vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 1vh;
+    row-gap: 4vh;
 }
 
 .birth__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    width: 100%;
+    align-self: flex-end;
+    grid-column: 1;
+    grid-row: 1;
 }
 
-.birth__title img {
-    max-width: 140px;
+.birth__text {
+    grid-column: span 2;
+    grid-row: 2;
 }
 
-.birth__content img {
-    display: none;
+.title__baby {
+    justify-self: flex-end;
+    grid-column: 2;
+    grid-row: 1;
+    width: 140px; 
+    height: 146.76px;  
+    overflow: hidden;
+    position: relative;  
+}
+
+.title__baby canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
 }
 
 
@@ -250,6 +287,23 @@ h1 .red {
     transform: rotate(-11deg);
     margin-inline-start: -15vw;
     max-width: 135px;
+    animation: beat 1s infinite ease-in-out;
+}
+
+@keyframes beat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.05);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .apprentice__content img {
@@ -345,7 +399,7 @@ section .question {
 .antwerp {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 4vh;
     overflow-x: hidden;
@@ -380,8 +434,16 @@ section .question {
 }
 
 .antwerp h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: clamp(1.8rem, 2.2rem + 0.5vw, 2.8rem);
     margin-block-start: 8rem;
+    text-align: center;
+}
+
+.antwerp h2 p {
+    margin-block-end: -9vh;
 }
 
 .antwerp__interaction {
@@ -772,6 +834,7 @@ button {
     }
 
     h2,h3 {
+        line-height: 0.7;
         font-size: clamp(2.5rem, 3rem + 0.2vw, 3rem);
     }
 
@@ -833,27 +896,22 @@ button {
         gap: 0vh;
     }
 
-    .birth__title {
-        display: block;
+    .birth__title{
+        margin-bottom: -1vh;
     }
 
-    .birth__content {
-        display: flex;
-        flex-direction: row;  
-        align-items: center;
-        gap: 2vw;
+    .birth__text {
+        align-self: center;
+        grid-column: 1;
+        grid-row: 2;
     }
 
-    .birth__title img {
-        max-width: 250px;
-    }
-
-    .birth__content img {
-        display: block;
-    }
-
-    .birth__title img {
-        display: none;
+    .title__baby {
+        align-self: center;
+        grid-column: 2;
+        grid-row: 2;
+        width: 311px;
+        height: 326px;
     }
 
     .apprentice__title {
@@ -886,7 +944,7 @@ button {
         display: block;
         max-width: 330px;
         margin-inline-start: -15vw;
-        margin-block-start: -23vh;
+        margin-block-start: -15vh;
     }
 
     .apprentice__content {
@@ -898,8 +956,86 @@ button {
         align-self: flex-end;
     }
 
+    .antwerp__img {
+        max-width: 475px;
+    }
 
 
+     
+
+    .antwerp__title h2{
+        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .title__c {
+        font-size: 22rem;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .title__l {
+        font-size: 25rem;
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    .antwerp h2 p {
+        font-size: 6rem;
+        margin-block-end: 0vh;
+        align-self: flex-end;
+    }
+
+    
+
+
+
+
+
+    .antwerp__martina {
+        display: block;
+        position: relative;
+        align-self: flex-end;
+    }
+
+    .martina__portrait img{
+        max-width: 250px;
+    }
+
+    .martina__heart {
+        position: absolute;
+        max-width: 37px;
+        transform: scaleX(-1);
+        top: 60%;
+        left: 60%;
+    }
+
+    .antwerp__martina p{
+        display: none;
+    }
+
+    .antwerp__moretus {
+        display: block;
+        position: relative;
+        align-self: flex-start;
+    }
+
+    .moretus__portrait img{
+        max-width: 208px;    
+    }
+
+    .moretus__heart {
+        position: absolute;
+        max-width: 30px;
+        top: 55%;
+        left: 65%;
+    }
+
+    .antwerp__moretus p{
+        display: none;
+    }
 
     
 

@@ -1,20 +1,60 @@
 import "../css/reset.css";
 import "../css/style.css";
 
-// import { DotLottie } from '@lottiefiles/dotlottie-web';
+import { DotLottie } from '@lottiefiles/dotlottie-web';
+import cryingJson from "../animations/crying.json?url";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 
+new DotLottie({
+    autoplay: true,
+    loop: true,
+    canvas: document.querySelector(".title__baby canvas"),
+    src: cryingJson,
+});
 
+// const ring = document.querySelector('.antwerp__interaction img');
+// const hand = document.querySelector('.antwerp__img');
+// const marriedHand = document.querySelector('.antwerp__img + picture');
+// const instructions = document.querySelector('.instructions');
 
-// new DotLottie({
-//     autoplay: true,
-//     loop: true,
-//     canvas: document.querySelector(".title__heart"),
-//     src: "..animations/heart.json",
-// });
+// ring.setAttribute('draggable', true);
+
+// const isTouchDevice = () => {
+//     return (('ontouchstart' in window) ||
+//         (navigator.maxTouchPoints > 0) ||
+//         (navigator.msMaxTouchPoints > 0));
+// }
+
+// const handleStartDrag = e => {
+//     const isTouchScreen = e.touches !== undefined;
+//     console.log('handleStartDrag', isTouchScreen, e);
+//     window.addEventListener('touchmove', handleDragMove);
+//     window.addEventListener('mousemove', handleDragMove);
+//     window.addEventListener('touchend', handleStopDrag);
+//     window.addEventListener('mouseup', handleStopDrag);
+// };
+// const handleDragMove = e => {
+//     const isTouchScreen = e.touches !== undefined;
+//     console.log('handleDragMove', isTouchScreen, e);
+//     // todo: position the drag image
+// };
+// const handleStopDrag = e => {
+//     const isTouchScreen = e.touches !== undefined;
+//     console.log('handleStopDrag', isTouchScreen, e);
+//     // todo: check if it is positioned on top of the hand
+//     window.removeEventListener('touchmove', handleDragMove);
+//     window.removeEventListener('mousemove', handleDragMove);
+//     window.removeEventListener('touchend', handleStopDrag);
+//     window.removeEventListener('mouseup', handleStopDrag);
+// };
+
+// const isTouchScreen = isTouchDevice();
+
+// ring.addEventListener('touchstart', handleStartDrag);
+// ring.addEventListener('mousedown', handleStartDrag);
 
 
 const ring = document.querySelector('.antwerp__interaction img');
@@ -22,96 +62,167 @@ const hand = document.querySelector('.antwerp__img');
 const marriedHand = document.querySelector('.antwerp__img + picture');
 const instructions = document.querySelector('.instructions');
 
+const initialPosition = {
+    left: ring.offsetLeft,
+    top: ring.offsetTop,
+};
+
 ring.setAttribute('draggable', true);
 
-ring.addEventListener('dragstart', function (e) {
-    e.dataTransfer.setData('text/plain', 'ring');
+const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+}
 
-    const dragImage = ring.cloneNode(true);
-    dragImage.style.position = 'absolute';
-    dragImage.style.zIndex = '9999';
+const handleStartDrag = e => {
+    const isTouchScreen = e.touches !== undefined;
+    console.log('handleStartDrag', isTouchScreen, e);
+    window.addEventListener('touchmove', handleDragMove);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('touchend', handleStopDrag);
+    window.addEventListener('mouseup', handleStopDrag);
+};
+const handleDragMove = e => {
+    const isTouchScreen = e.touches !== undefined;
 
-    dragImage.style.width = `${ring.offsetWidth}px`;
-    dragImage.style.height = `${ring.offsetHeight}px`;
+    const pointerX = isTouchScreen ? e.touches[0].clientX : e.clientX;
+    const pointerY = isTouchScreen ? e.touches[0].clientY : e.clientY;
 
-    document.body.appendChild(dragImage);
-    e.dataTransfer.setDragImage(dragImage, 30, 30);
-
-    setTimeout(() => {
-        document.body.removeChild(dragImage);
-    }, 0);
-
-    ring.style.opacity = '0';
-});
-
-ring.addEventListener('dragend', function () {
-    ring.style.opacity = '1';
-});
-
-hand.addEventListener('dragover', function (e) {
-    e.preventDefault();
-});
-
-hand.addEventListener('drop', function (e) {
-    e.preventDefault();
-    const data = e.dataTransfer.getData('text/plain');
-
-    if (data === 'ring') {
-        ring.style.display = 'none';
-
-        hand.style.display = 'none';
-        marriedHand.style.display = 'block';
-
-        instructions.textContent = "You have successfully married them!";
-    }
-});
-
-let isDragging = false;
-
-ring.addEventListener('touchstart', function (e) {
-    e.preventDefault();
-    isDragging = true;
-
-    const touch = e.touches[0];
     ring.style.position = 'absolute';
-    ring.style.zIndex = '9999';
-    ring.style.opacity = '0.5';
-    ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
-    ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
-});
+    ring.style.left = `${pointerX - ring.offsetWidth / 2}px`;
+    ring.style.top = `${pointerY - ring.offsetHeight / 2}px`;
 
-ring.addEventListener('touchmove', function (e) {
-    if (!isDragging) return;
+    if (isTouchScreen) {
+        e.preventDefault();
+    }
+};
+const handleStopDrag = e => {
+    const isTouchScreen = e.touches !== undefined;
+    console.log('handleStopDrag', isTouchScreen, e);
 
-    const touch = e.touches[0];
-    ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
-    ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
-});
-
-ring.addEventListener('touchend', function (e) {
-    isDragging = false;
-
-    const touch = e.changedTouches[0];
-    const dropX = touch.clientX;
-    const dropY = touch.clientY;
-
+    const ringRect = ring.getBoundingClientRect();
     const handRect = hand.getBoundingClientRect();
-
     if (
-        dropX >= handRect.left &&
-        dropX <= handRect.right &&
-        dropY >= handRect.top &&
-        dropY <= handRect.bottom
+        ringRect.left < handRect.right &&
+        ringRect.right > handRect.left &&
+        ringRect.top < handRect.bottom &&
+        ringRect.bottom > handRect.top
     ) {
-        ring.style.display = 'none'; 
+        console.log('Ring dropped on the hand!');
+
         hand.style.display = 'none'; 
         marriedHand.style.display = 'block'; 
-        instructions.textContent = "You have successfully married them!";
+
+        ring.style.display = 'none';
     } else {
-        ring.style.position = 'static';
-        ring.style.opacity = '1';
+        console.log('Ring dropped outside. Resetting position.');
+        ring.style.left = `${initialPosition.left}px`;
+        ring.style.top = `${initialPosition.top}px`;
     }
-});
+
+    window.removeEventListener('touchmove', handleDragMove);
+    window.removeEventListener('mousemove', handleDragMove);
+    window.removeEventListener('touchend', handleStopDrag);
+    window.removeEventListener('mouseup', handleStopDrag);
+};
+
+
+const isTouchScreen = isTouchDevice();
+
+ring.addEventListener('touchstart', handleStartDrag);
+ring.addEventListener('mousedown', handleStartDrag);
+
+// ring.addEventListener('dragstart', function (e) {
+//     e.dataTransfer.setData('text/plain', 'ring');
+
+//     const dragImage = ring.cloneNode(true);
+//     dragImage.style.position = 'absolute';
+//     dragImage.style.zIndex = '9999';
+
+//     dragImage.style.width = `${ring.offsetWidth}px`;
+//     dragImage.style.height = `${ring.offsetHeight}px`;
+
+//     document.body.appendChild(dragImage);
+//     e.dataTransfer.setDragImage(dragImage, 30, 30);
+
+//     console.log(dragImage);
+
+//     setTimeout(() => {
+//         document.body.removeChild(dragImage);
+//     }, 0);
+
+//     ring.style.opacity = '0';
+// });
+
+// ring.addEventListener('dragend', function () {
+//     ring.style.opacity = '1';
+// });
+
+// hand.addEventListener('dragover', function (e) {
+//     e.preventDefault();
+// });
+
+// hand.addEventListener('drop', function (e) {
+//     e.preventDefault();
+//     const data = e.dataTransfer.getData('text/plain');
+
+//     if (data === 'ring') {
+//         ring.style.display = 'none';
+
+//         hand.style.display = 'none';
+//         marriedHand.style.display = 'block';
+
+//         instructions.textContent = "You have successfully married them!";
+//     }
+// });
+
+// let isDragging = false;
+
+// ring.addEventListener('touchstart', function (e) {
+//     e.preventDefault();
+//     isDragging = true;
+
+//     const touch = e.touches[0];
+//     ring.style.position = 'absolute';
+//     ring.style.zIndex = '9999';
+//     ring.style.opacity = '0.5';
+//     ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
+//     ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
+// });
+
+// ring.addEventListener('touchmove', function (e) {
+//     if (!isDragging) return;
+
+//     const touch = e.touches[0];
+//     ring.style.left = `${touch.clientX - ring.offsetWidth / 2}px`;
+//     ring.style.top = `${touch.clientY - ring.offsetHeight / 2}px`;
+// });
+
+// ring.addEventListener('touchend', function (e) {
+//     isDragging = false;
+
+//     const touch = e.changedTouches[0];
+//     const dropX = touch.clientX;
+//     const dropY = touch.clientY;
+
+//     const handRect = hand.getBoundingClientRect();
+
+//     if (
+//         dropX >= handRect.left &&
+//         dropX <= handRect.right &&
+//         dropY >= handRect.top &&
+//         dropY <= handRect.bottom
+//     ) {
+//         ring.style.display = 'none';
+//         hand.style.display = 'none';
+//         marriedHand.style.display = 'block';
+//         instructions.textContent = "You have successfully married them!";
+//     } else {
+//         ring.style.position = 'static';
+//         ring.style.opacity = '1';
+//     }
+// });
 
 
 
@@ -128,27 +239,27 @@ gsap.timeline({
         trigger: '.night',
         start: 'top top',
         end: '+=300%',
-        pin: true,  
-        scrub: true, 
+        pin: true,
+        scrub: true,
     },
 })
     .fromTo(
         attackers,
         {
-            y: window.innerHeight +100, 
-            autoAlpha: 1, 
+            y: window.innerHeight + 100,
+            autoAlpha: 1,
             rotate: 90,
         },
         {
-            y: 0, 
-            autoAlpha: 1, 
+            y: 0,
+            autoAlpha: 1,
             rotate: 90,
-            duration: 1, 
+            duration: 1,
         }
     )
     .to(attackers, {
-        y: '-100vh', 
-        autoAlpha: 0, 
+        y: '-100vh',
+        autoAlpha: 0,
         rotate: 90,
         duration: 1,
     });
@@ -156,15 +267,15 @@ gsap.timeline({
 gsap.timeline({
     scrollTrigger: {
         trigger: attackers,
-        start: 'top 10%', 
-        end: 'bottom center', 
-        scrub: true,  
+        start: 'top 10%',
+        end: 'bottom center',
+        scrub: true,
     },
 })
-    .to(plantinSmall, { autoAlpha: 0, duration: 0 }, '+=0.3') 
-    .set(plantinSmall, { display: 'none' }) 
-    .set(plantinBeaten, { display: 'block' }) 
-    .to(plantinBeaten, { autoAlpha: 1, duration: 0.5 }, '+=0.3'); 
+    .to(plantinSmall, { autoAlpha: 0, duration: 0 }, '+=0.3')
+    .set(plantinSmall, { display: 'none' })
+    .set(plantinBeaten, { display: 'block' })
+    .to(plantinBeaten, { autoAlpha: 1, duration: 0.5 }, '+=0.3');
 
 ScrollTrigger.create({
     trigger: attackers,
@@ -178,7 +289,7 @@ ScrollTrigger.create({
                 paragraph2.style.display = 'block';
 
                 const htmlContent = paragraph2.innerHTML;
-                paragraph2.innerHTML = ''; 
+                paragraph2.innerHTML = '';
 
                 const wrappedText = htmlContent.replace(/(<[^>]+>|[\s\S])/g, (match) => {
                     if (match.startsWith('<') && match.endsWith('>')) {
@@ -190,13 +301,13 @@ ScrollTrigger.create({
                 paragraph2.innerHTML = wrappedText;
                 gsap.utils.toArray(paragraph2.querySelectorAll('span')).forEach((char, index) => {
                     gsap.fromTo(char, {
-                        opacity: 0, 
-                        y: -20, 
+                        opacity: 0,
+                        y: -20,
                     }, {
-                        opacity: 1, 
-                        y: 0, 
-                        delay: Math.random() * 0.5, 
-                        duration: 0.3, 
+                        opacity: 1,
+                        y: 0,
+                        delay: Math.random() * 0.5,
+                        duration: 0.3,
                         ease: "power1.out",
                     });
                 });
@@ -242,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     paris.addEventListener("click", () => {
         paris.classList.remove("visible");
         antwerp.classList.add("visible");
-        paris.style.display = "none"; 
+        paris.style.display = "none";
         antwerp.style.display = "flex";
     });
 });
@@ -265,8 +376,8 @@ singleBlack.addEventListener('mousemove', (event) => {
     const xPercent = offsetX / width * 100;
     const yPercent = offsetY / height * 100;
 
-    singleColour.style.opacity = 1; 
-    singleColour.style.clipPath = `circle(4% at ${xPercent}% ${yPercent}%)`; 
+    singleColour.style.opacity = 1;
+    singleColour.style.clipPath = `circle(4% at ${xPercent}% ${yPercent}%)`;
 });
 
 
@@ -289,11 +400,11 @@ gsap.to(".death__sheet", {
 gsap.to(".death img", {
     scrollTrigger: {
         trigger: ".death__sheet",
-        start: "top bottom",      
-        end: "top center",         
-        scrub: true,              
+        start: "top bottom",
+        end: "top center",
+        scrub: true,
     },
-    filter: "grayscale(100%)", 
+    filter: "grayscale(100%)",
 });
 
 gsap.to(".death img", {
@@ -303,8 +414,8 @@ gsap.to(".death img", {
         end: "top center",
         scrub: true,
     },
-    opacity: 0, 
-    transition: "opacity 1s ease", 
+    opacity: 0,
+    transition: "opacity 1s ease",
 });
 
 // gsap.registerPlugin(ScrollTrigger);

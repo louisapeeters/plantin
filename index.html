@@ -15,14 +15,12 @@
 
 <body>
   <nav>
-    <a href="https://museumplantinmoretus.be/en" target="_blank">
       <picture>
         <img sizes="(max-width: 190px) 100vw, 190px" srcset="
             ./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_80.avif 80w,
             ./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_190.avif 190w"
           src="./src/assets/MPM_logo_grijs_s1xgmk_c_scale,w_190.avif" alt="Museum Plantin Moretus Logo">
       </picture>
-    </a>
   </nav>
 
   <header class="hero">
@@ -50,11 +48,10 @@
 
   <main>
     <section class="birth">
-      <div class="birth__title">
-        <h2><span class="red">R</span>ise and <span class="red">S</span>hine</h2>
-        <img src="./src/assets/baby.svg" alt="Portrait of a baby">
-      </div>
-      <div class="birth__content">
+        <h2 class="birth__title"><span class="red">R</span>ise and <span class="red">S</span>hine</h2>
+        <div class="title__baby">
+          <canvas></canvas>
+        </div>
         <p class="birth__text">The sun rises over Tours, France, around 1517—though Plantin always insisted it was
           <strong>1520</strong>. "Easier to do the math," he'd
           joke. Baby <strong>Plantin is born</strong>. Life wasn't all sunshine and roses, though in that time. <strong>The
@@ -63,13 +60,10 @@
           to Paris and enrolled
           Christophe at the prestigious <strong>Sorbonne</strong>
         </p>
-        <img src="./src/assets/baby.svg" alt="Portrait of a baby">
-      </div>
     </section>
 
     <section class="apprentice">
       <div class="apprentice__title">
-        <!-- <canvas class="title__heart"></canvas> -->
         <img src="./src/assets/heart.svg" alt="illustration of a heart">
           <div class="apprentice__title--text">
             <div class="title__love">
@@ -102,10 +96,10 @@
         </div>
       </div>
       <section class="question">
-        <div class="question__text">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/content/meet-plantin-and-his-family">
           <p class="text__q">Want to know more about Plantin's family?</p>
           <p class="text__arrow">-></p>
-        </div>
+        </a>
       </section>
     </section>
 
@@ -115,29 +109,46 @@
         <img sizes="(max-width: 700px) 100vw, 700px" srcset="
       ./src/assets/married_hand_w6xvzu_c_scale,w_240.avif 240w,
       ./src/assets/married_hand_w6xvzu_c_scale,w_469.avif 469w,
-      ./src/assets/married_hand_w6xvzu_c_scale,w_700.avif 700w" src="./src/assets/married_hand_w6xvzu_c_scale,w_700.avif" alt="">
+      ./src/assets/married_hand_w6xvzu_c_scale,w_700.avif 700w" src="./src/assets/married_hand_w6xvzu_c_scale,w_700.avif" alt="Illustration of a pointing hand with a ring on the finger">
       </picture>
       <div class="antwerp__martina">
-        <img src="./src/assets/martina.svg" alt="Portrait of Martina Plantin">
+        <img class="martina__heart" src="./src/assets/heart.svg" alt="stamp of a heart">
+        <picture class="martina__portrait">
+          <img sizes="(max-width: 325px) 100vw, 325px" srcset="
+        ./src/assets/martina_uwscuw_c_scale,w_250.avif 250w,
+        ./src/assets/martina_uwscuw_c_scale,w_325.avif 325w" src="./src/assets/martina_uwscuw_c_scale,w_325.avif" alt="Portrait of Martina Plantin">
+        </picture>
         <p>Martina Plantin</p>
       </div>
-      <div class="antwerp__title">
-        <h2><span class="red title__c">C</span>hristoffe <span class="red title__l">L</span></h2>
+      <div class="antwerp__content">
+        <div class="antwerp__title">
+          <h2>
+          <span class="red title__c">C</span>
+          <p>hristoffe</p>
+          <span class="red title__l">L</span>
+          </h2>
+        </div>
+        <p class="antwerp__text">So by evening, Christophe and Joanna move to <strong>Antwerp</strong>, where they open a
+          modest <strong>bookshop</strong>. Here, Christophe officially
+          rebrands himself as "Christoffel" because when in Rome—or Antwerp—you adapt. Their family grows with the arrival
+          of
+          their second daughter, <strong>Martina Plantin</strong>. Martina, clearly inheriting her father's knack for smart
+          <strong>partnerships</strong> and will
+          one day marry <strong>Jan Moretus</strong>, a young apprentice who not only wins her heart but also later will
+          take the reins of the
+          family business.
+        </p>
       </div>
       <div class="antwerp__moretus">
-        <img src="./src/assets/moretus.svg" alt="Portrait of Jan Moretus">
+        <img class="moretus__heart" src="./src/assets/heart.svg" alt="stamp of a heart">
+        <picture class="moretus__portrait">
+          <img sizes="(max-width: 330px) 100vw, 330px" srcset="
+              ./src/assets/jan_moretus_dwqa8f_c_scale,w_200.avif 200w,
+              ./src/assets/jan_moretus_dwqa8f_c_scale,w_330.avif 330w"
+            src="./src/assets/jan_moretus_dwqa8f_c_scale,w_330.avif" alt="Portrait of Jan Moretus">
+        </picture>
         <p>Jan Moretus</p>
       </div>
-      <p class="antwerp__text">So by evening, Christophe and Joanna move to <strong>Antwerp</strong>, where they open a
-        modest <strong>bookshop</strong>. Here, Christophe officially
-        rebrands himself as "Christoffel" because when in Rome—or Antwerp—you adapt. Their family grows with the arrival
-        of
-        their second daughter, <strong>Martina Plantin</strong>. Martina, clearly inheriting her father's knack for smart
-        <strong>partnerships</strong> and will
-        one day marry <strong>Jan Moretus</strong>, a young apprentice who not only wins her heart but also later will
-        take the reins of the
-        family business.
-      </p>
       <div class="antwerp__interaction">
         <picture>
           <img sizes="(max-width: 120px) 100vw, 120px" srcset="
@@ -147,14 +158,14 @@
         <p class="instructions">drag and drop the ring on her finger to marry them</p>
       </div>
       <section class="question">
-        <div class="question__text">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/martina-plantin">
           <p class="text__q">Want to know more about Martina Plantin?</p>
           <p class="text__arrow">-></p>
-        </div>
-        <div class="question__text">
+        </a>
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/jan-i-moretus">
           <p class="text__q">Want to know more about Jan Moretus?</p>
           <p class="text__arrow">-></p>
-        </div>
+        </a>
       </section>
     </section>
 
@@ -222,10 +233,10 @@
           that printing is not just lucrative, it's <strong>hazardous</strong> to your social life.</p>
       </div>
       <section class="question">
-        <div class="question__text">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/buildings-400-year-history">
           <p class="text__q">Want to know more about the building?</p>
           <p class="text__arrow">-></p>
-        </div>
+        </a>
       </section>
     </section>
 
@@ -261,10 +272,10 @@
           running a printing press or a <strong>breeding program</strong>.</p>
       </div>
       <section class="question">
-        <div class="question__text">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/worlds-two-oldest-printing-presses">
           <p class="text__q">Want to know more about his equipment?</p>
           <p class="text__arrow">-></p>
-        </div>
+        </a>
       </section>
     </section>
 
@@ -385,9 +396,11 @@
       special activities for
       families, but with our large archive it's also the perfect place for researchers, curious or history savvy people!
     </p>
-    <button class="button">
-      order tickets
-    </button>
+    <a href="https://ttk.recreatex.be/Exhibitions/Register?ID=193d593e-f57a-ed11-9592-a48785620fa0&refresh=y&language=en"></a>
+      <button class="button">
+        order tickets
+      </button>
+    </a>
   </footer>
 
   <script src="./src/js/script.js" type="module"></script>
