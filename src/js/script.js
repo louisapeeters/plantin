@@ -61,6 +61,9 @@ const ring = document.querySelector('.antwerp__interaction img');
 const hand = document.querySelector('.antwerp__img');
 const marriedHand = document.querySelector('.antwerp__img + picture');
 const instructions = document.querySelector('.instructions');
+const martina = document.querySelector('.antwerp__martina');
+const moretus = document.querySelector('.antwerp__moretus');
+
 
 const initialPosition = {
     left: ring.offsetLeft,
@@ -113,8 +116,11 @@ const handleStopDrag = e => {
 
         hand.style.display = 'none'; 
         marriedHand.style.display = 'block'; 
-
         ring.style.display = 'none';
+
+        martina.style.opacity = '1';
+        moretus.style.opacity = '1';
+
     } else {
         console.log('Ring dropped outside. Resetting position.');
         ring.style.left = `${initialPosition.left}px`;
