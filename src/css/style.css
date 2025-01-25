@@ -101,9 +101,6 @@ section {
     font-weight: var(--weight-bold);
     color: var(--t-titles);
     font-size: clamp(1rem, 1.2rem + 0.2vw, 1.4rem);
-    /* background-image: url('../assets/highlight.svg');
-    background-repeat: no-repeat;
-    background-size: cover; */
     padding-inline: 1vw;
     padding-block: 1vh;
 }
@@ -186,7 +183,6 @@ h1 .red {
     max-width: 85px;
     justify-self: end;
     transform: rotate(4.14deg);
-    /* animation: ring 0.4s infinite; */
 }
 
 @keyframes ring {
@@ -552,18 +548,13 @@ section .question {
     font-weight: 500;
     text-align: center;
     line-height: 1.2;
+    max-width: 30rem;
 }
 
 .house__title {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1vw;
-    padding-inline: 3vw;
-}
-
-.house__title img {
-    max-width: 75px;
+    justify-content: space-between;
 }
 
 .house__text{
@@ -575,8 +566,8 @@ section .question {
 }
 
 .house__sign {
-    width: 110px;
-    height: 110.77px;
+    width: 135px;
+    height: 103.77px;
     overflow: hidden;
     position: relative;
 }
@@ -753,12 +744,9 @@ section .question {
     position: absolute;
     width: 100%;
     opacity: 1;
-    /* Ensure the colored image is visible */
     z-index: 0;
     mask-image: url('');
-    /* Will be set dynamically in JavaScript */
     -webkit-mask-image: url('');
-    /* For Webkit browsers */
 }
 
 .botanic__flower,
@@ -868,6 +856,12 @@ button {
     background-image: url('../assets/button.svg');
     background-size: 236px 49px;
     margin-block-start: 4vh;
+}
+
+@media screen and (max-width: 328px) {
+    .house__sign {
+        margin-inline-start: -13vw;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -1147,6 +1141,56 @@ button {
         width: 500px;
     }
 
+    .house {
+        background-image: none; 
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding-inline: 0vw;
+        gap: 2vh;
+        transition: background-image 0.3s ease-in-out; 
+    }
+
+    .house .instructions {
+        top: 50%;
+        font-size: clamp(1.3rem, 1.5rem + 1vw, 2rem);
+    }
+
+    .house.active {
+        margin-block-start: 10vh;
+        background-image: url('../assets/printing_house.png'); 
+    }
+
+    .house h2 {
+        font-size: clamp(2.5rem, 3rem + 2vw, 3.5rem);;
+        max-width: fit-content;
+    }
+
+    .house__text {
+        padding-inline: 8vw;
+        padding-block-end: 3vh;
+    }
+
+    .house__text > :first-child {
+        padding-block-end: 1vh;
+    }
+
+    .house__sign {
+        width: 110px; 
+        height: 144pxpx;  
+        overflow: hidden;
+        position: relative; 
+    } 
+
+    .house__sign canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
+
+    .house .question {
+        align-self: flex-start;
+        margin-inline-start: 4vw;
+    }
 
 
 
@@ -1161,6 +1205,14 @@ button {
         align-items: center;
         gap: 1vh;
     } */
+
+    .raid__text {
+        padding-block-end: 2vh;
+    }
+
+    .raid .question {
+        margin-inline-end: 3vw;
+    }
 
     .antwerp__animation {
         width: 320.38px;

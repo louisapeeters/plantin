@@ -21,13 +21,6 @@ new DotLottie({
 new DotLottie({
     autoplay: true,
     loop: true,
-    canvas: document.querySelector(".house__sign canvas"),
-    src: signJson,
-});
-
-new DotLottie({
-    autoplay: true,
-    loop: true,
     canvas: document.querySelector(".antwerp__animation canvas"),
     src: antwerpJson,
 });
@@ -397,6 +390,38 @@ const handleClick = () => {
 
 houseOpening.addEventListener("click", handleClick);
 houseOpening.addEventListener("touchstart", handleClick); 
+
+const signCanvas = document.querySelector(".house__sign canvas");
+let animationPlayed = false;
+
+const lottieAnimation = new DotLottie({
+    autoplay: false,
+    loop: false,
+    canvas: signCanvas,
+    src: signJson,
+});
+
+const houseSignElement = document.querySelector(".house__sign");
+
+const onElementVisible = () => {
+    if (!animationPlayed) {
+        lottieAnimation.play();
+        animationPlayed = true;
+    }
+};
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                onElementVisible();
+            }
+        });
+    },
+    { threshold: 0.1 }
+);
+
+observer.observe(houseSignElement);
 
 
 
