@@ -624,6 +624,16 @@ section .question {
     flex-direction: column;
     gap: 3vh;
     padding-block-end: 8vh;
+    padding-inline: 4vw;
+    font-family: var(--f-general);
+    font-size: clamp(0.9rem, 1.1rem + 0.2vw, 1.1rem);
+    line-height: 140%;
+}
+
+.raid__text p {
+    font-family: var(--f-general);
+    font-size: clamp(0.9rem, 1.1rem + 0.2vw, 1.1rem);
+    line-height: 140%;
 }
 
 .antwerp__animation {
@@ -707,22 +717,22 @@ section .question {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4vh;
+    gap: 2vh;
+    padding-block-start: 20vh;
     cursor: url('../assets/brush.svg'), auto;
-    position: relative;
 }
 
 .botanic__single {
     position: relative;
-    width: 100%;
-    padding-block-end: 8vh;
-    padding-block-start: 20vh;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.single__black {
-    position: absolute;
-    width: 100%;
-    z-index: 1;
+.botanic__single img,  .botanic__single canvas{
+    margin-block-end: -10vh;
+    max-width: 400px;
 }
 
 .single__canvas {
@@ -734,17 +744,12 @@ section .question {
 .single__colour {
     position: absolute;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    max-width: 400px;
     height: auto;
-    overflow: hidden;
 }
 
 .single__colour {
-    position: absolute;
-    width: 100%;
-    opacity: 1;
-    z-index: 0;
     mask-image: url('');
     -webkit-mask-image: url('');
 }
@@ -754,11 +759,15 @@ section .question {
     display: none;
 }
 
-.botanic .instructions {
-    max-width: 50%;
+.small__instructions {
+    padding-block-start: 4vh;
+    max-width: 60%;
     align-self: flex-end;
 }
 
+.large__instructions {
+    display: none;
+}
 
 
 
@@ -768,8 +777,8 @@ section .question {
     position: relative;
     overflow: hidden;
     padding-inline: 0vw;
-    margin-block-end: 20vh;
-    margin-block-start: 15vh;
+    margin-block-end: 15vh;
+    margin-block-start: 5vh;
 }
 
 .death__sheet {
@@ -778,7 +787,7 @@ section .question {
     justify-content: center;
     align-items: center;
     gap: 4vh;
-    background-image: url('../assets/sheet.avif');
+    background-image: url('../assets/sheet1.jpg');
     background-size: cover;
     padding-block: 10vh;
     padding-inline: 6vh;

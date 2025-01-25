@@ -261,7 +261,6 @@ const paragraph2 = document.querySelector('.paragraph2');
 
 const isLargeScreen = window.innerWidth >= 768;
 
-// Attackers animation based on screen size
 const attackersAnimation = gsap.timeline({
     scrollTrigger: {
         trigger: '.night',
@@ -480,57 +479,126 @@ parisSwitch.addEventListener("touchstart", () => toggleVisibility(paris, antwerp
 // });
 
 
+// const singleBlack = document.querySelector('.single__black');
+// const singleColour = document.querySelector('.single__colour');
+// const canvas = document.querySelector('.single__canvas');
+// const ctx = canvas.getContext('2d');
+
+// canvas.width = singleBlack.offsetWidth;
+// canvas.height = singleBlack.offsetHeight;
+
+// ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// singleBlack.addEventListener('mousemove', (event) => {
+//     const { offsetX, offsetY } = event;
+
+//     ctx.globalCompositeOperation = 'source-over'; 
+//     ctx.beginPath();
+//     ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2); 
+//     ctx.fillStyle = 'white'; 
+//     ctx.fill();
+//     ctx.closePath();
+
+//     updateMask();
+// });
+
+// function updateMask() {
+//     const mask = canvas.toDataURL();
+//     singleColour.style.maskImage = `url(${mask})`;
+//     singleColour.style.webkitMaskImage = `url(${mask})`; 
+// }
+
+
+
+const TextInstructions = document.getElementById('instructions');
+
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    TextInstructions.textContent = 'Go over the woodcuts to colour them in.';
+} else {
+    TextInstructions.textContent = 'Hover over the woodcuts to colour them in.';
+}
+
 const singleBlack = document.querySelector('.single__black');
 const singleColour = document.querySelector('.single__colour');
 const canvas = document.querySelector('.single__canvas');
 const ctx = canvas.getContext('2d');
 
-// Set canvas size to match the black-and-white image
 canvas.width = singleBlack.offsetWidth;
 canvas.height = singleBlack.offsetHeight;
 
-// Initialize the canvas as transparent
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// Handle mouse movement over the black-and-white image
-singleBlack.addEventListener('mousemove', (event) => {
-    const { offsetX, offsetY } = event;
+let isTouching = false;
+let lastTouchUpdate = 0;
+let maskUpdateDelay = 50; 
 
-    // Draw a semi-transparent white circle on the canvas
-    ctx.globalCompositeOperation = 'source-over'; // Default blending mode
+function draw(event) {
+    let offsetX, offsetY;
+
+    if (event.touches) {
+        const touch = event.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+    } else {
+        offsetX = event.offsetX;
+        offsetY = event.offsetY;
+    }
+
+    ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
-    ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2); // Adjust circle size as needed
-    ctx.fillStyle = 'white'; // Semi-transparent white
+    ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
     ctx.fill();
     ctx.closePath();
 
-    // Update the mask for the color image
     updateMask();
-});
-
-function updateMask() {
-    // Convert the canvas to a data URL and apply it as a mask for the color image
-    const mask = canvas.toDataURL();
-    singleColour.style.maskImage = `url(${mask})`;
-    singleColour.style.webkitMaskImage = `url(${mask})`; // For Webkit browsers
 }
 
+function updateMask() {
+    const now = Date.now();
+
+    if (now - lastTouchUpdate > maskUpdateDelay) {
+        lastTouchUpdate = now;
+        const mask = canvas.toDataURL();
+        singleColour.style.maskImage = `url(${mask})`;
+        singleColour.style.webkitMaskImage = `url(${mask})`;
+    }
+}
+
+singleBlack.addEventListener('mousemove', (event) => {
+    draw(event);
+});
+
+singleBlack.addEventListener('touchstart', (event) => {
+    event.preventDefault(); 
+    isTouching = true;
+    draw(event); 
+});
+
+singleBlack.addEventListener('touchmove', (event) => {
+    event.preventDefault(); 
+    if (isTouching) {
+        draw(event);
+    }
+});
+
+singleBlack.addEventListener('touchend', (event) => {
+    event.preventDefault(); 
+    isTouching = false;
+});
 
 
 
 
-
-
-
-
-gsap.to(".death__sheet", {
+gsap.to(".death img", {
     scrollTrigger: {
         trigger: ".death img",
-        start: "bottom bottom",
+        start: "bottom bottom", 
         endTrigger: ".death__sheet",
-        end: "top top",
-        pin: ".death img",
-        pinSpacing: false,
+        end: "top top", 
+        pin: true, 
+        pinSpacing: false, 
         scrub: true,
     },
 });
@@ -538,23 +606,64 @@ gsap.to(".death__sheet", {
 gsap.to(".death img", {
     scrollTrigger: {
         trigger: ".death__sheet",
-        start: "top bottom",
-        end: "top center",
+        start: "top bottom", 
+        end: "top top",
         scrub: true,
     },
     filter: "grayscale(100%)",
 });
 
-gsap.to(".death img", {
-    scrollTrigger: {
-        trigger: ".death__sheet",
-        start: "top bottom",
-        end: "top center",
-        scrub: true,
+ScrollTrigger.create({
+    trigger: ".death__sheet",
+    start: "bottom bottom",
+    onEnter: () => gsap.set(".death img", { display: "none" }), 
+    onLeaveBack: () => gsap.set(".death img", { display: "none" }), 
+    onUpdate: (self) => {
+        const scrollProgress = self.progress;  
+        if (scrollProgress > 0.5) { 
+            gsap.set(".death img", { display: "block" });
+        } else {
+            gsap.set(".death img", { display: "none" });
+        }
     },
-    opacity: 0,
-    transition: "opacity 1s ease",
 });
+
+
+
+
+
+// gsap.to(".death__sheet", {
+//     scrollTrigger: {
+//         trigger: ".death img",
+//         start: "bottom bottom",
+//         endTrigger: ".death__sheet",
+//         end: "top top",
+//         pin: ".death img",
+//         pinSpacing: false,
+//         scrub: true,
+//     },
+// });
+
+// gsap.to(".death img", {
+//     scrollTrigger: {
+//         trigger: ".death__sheet",
+//         start: "top bottom",
+//         end: "top center",
+//         scrub: true,
+//     },
+//     filter: "grayscale(100%)",
+// });
+
+// gsap.to(".death img", {
+//     scrollTrigger: {
+//         trigger: ".death__sheet",
+//         start: "top bottom",
+//         end: "top center",
+//         scrub: true,
+//     },
+//     opacity: 0,
+//     transition: "opacity 1s ease",
+// });
 
 // gsap.registerPlugin(ScrollTrigger);
 
