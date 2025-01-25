@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Christophel Plantin's story told in 48 hours of his life">
   <title>48 Hours in the life</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,7 +97,7 @@
         </div>
       </div>
       <section class="question">
-        <a class="question__text" href="https://museumplantinmoretus.be/en/content/meet-plantin-and-his-family">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/content/meet-plantin-and-his-family" aria-label="read more on Plantin's family">
           <p class="text__q">Want to know more about Plantin's family?</p>
           <p class="text__arrow">-></p>
         </a>
@@ -157,11 +158,11 @@
         <p class="instructions">drag and drop the ring on her finger to marry them</p>
       </div>
       <section class="question">
-        <a class="question__text" href="https://museumplantinmoretus.be/en/page/martina-plantin">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/martina-plantin" aria-label="read more on Martina Plantin">
           <p class="text__q">Want to know more about Martina Plantin?</p>
           <p class="text__arrow">-></p>
         </a>
-        <a class="question__text" href="https://museumplantinmoretus.be/en/page/jan-i-moretus">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/jan-i-moretus" aria-label="read more on Jan Moretus">
           <p class="text__q">Want to know more about Jan Moretus?</p>
           <p class="text__arrow">-></p>
         </a>
@@ -212,7 +213,9 @@
       <p class="instructions">click to open Officina Plantiniana</p>
       <div class="house__title">
         <h2>Officina Plantiniana</h2>
-        <img class="house__sign" src="./src/assets/sign.svg" alt="illustration of a sign with the emblem of plantin's printing house">
+        <div class="house__sign">
+          <canvas></canvas>
+        </div>
       </div>
       <div class="house__text">
         <p>The next morning, Christoffel wakes up with a plan—and probably a black eye. With his bookbinding days behind
@@ -232,7 +235,7 @@
           that printing is not just lucrative, it's <strong>hazardous</strong> to your social life.</p>
       </div>
       <section class="question">
-        <a class="question__text" href="https://museumplantinmoretus.be/en/page/buildings-400-year-history">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/buildings-400-year-history" aria-label="read more on the printing house of Plantin">
           <p class="text__q">Want to know more about the building?</p>
           <p class="text__arrow">-></p>
         </a>
@@ -241,16 +244,22 @@
 
     <section class="raid">
       <h2><span class="red">H</span>eresy, <span class="red">H</span>eadaches, and a House Full of <span class="red">D</span>aughters</h2>
+      <div class="raid__content">
       <div class="raid__antwerp">
-        <img src="./src/assets/antwerp.svg" alt="image of a gavel and illustrations of auction boards">
+         <div class="antwerp__animation">
+          <canvas></canvas>
+         </div>
         <div class="raid__switch">
           <img src="./src/assets/switch.svg" alt="switch on and off">
           <p class="instructions">see what's going on in Paris</p>
         </div>
       </div>
       <div class="raid__paris">
-        <img src="./src/assets/paris.svg"
-          alt="Portrait of Plantin wth illustration of a baret, moustache and tears on his face">
+        <div class="paris__animation">
+          <canvas></canvas>
+        </div>
+        <!-- <img src="./src/assets/paris.svg"
+          alt="Portrait of Plantin wth illustration of a baret, moustache and tears on his face"> -->
         <div class="raid__switch">
           <img src="./src/assets/switch.svg" alt="switch on and off">
           <p class="instructions">see what's going on in Antwerp</p>
@@ -270,8 +279,9 @@
           starts to wonder if he's
           running a printing press or a <strong>breeding program</strong>.</p>
       </div>
+      </div>
       <section class="question">
-        <a class="question__text" href="https://museumplantinmoretus.be/en/page/worlds-two-oldest-printing-presses">
+        <a class="question__text" href="https://museumplantinmoretus.be/en/page/worlds-two-oldest-printing-presses" aria-label="read more on Plantin's printing equipment">
           <p class="text__q">Want to know more about his equipment?</p>
           <p class="text__arrow">-></p>
         </a>
@@ -288,6 +298,7 @@
                 ./src/assets/single_colour_qmbbij_c_scale,w_400.avif 400w"
             src="./src/assets/single_colour_qmbbij_c_scale,w_400.avif" alt="coloured print of a plant">
         </picture>
+        <canvas class="single__canvas"></canvas>
         <picture class="single__black">
           <img sizes="(max-width: 400px) 100vw, 400px" srcset="
         ./src/assets/single_black_cfdfep_c_scale,w_150.avif 150w,
@@ -395,7 +406,7 @@
       special activities for
       families, but with our large archive it's also the perfect place for researchers, curious or history savvy people!
     </p>
-    <a href="https://ttk.recreatex.be/Exhibitions/Register?ID=193d593e-f57a-ed11-9592-a48785620fa0&refresh=y&language=en"></a>
+    <a href="https://ttk.recreatex.be/Exhibitions/Register?ID=193d593e-f57a-ed11-9592-a48785620fa0&refresh=y&language=en" aria-label="order your tickets for the plantin-moretus museum"></a>
       <button class="button">
         order tickets
       </button>

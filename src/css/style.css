@@ -54,7 +54,7 @@ img {
 html {
     color: var(--t-primary);
     padding-block-start: 3vh;
-    background-image: url('../assets/background.png');
+    background-image: url('../assets/background.jpeg');
     background-size: contain;
     background-color: #EEEEE8;
     overflow-x: hidden;
@@ -404,6 +404,7 @@ section .question {
     gap: 4vh;
     overflow-x: hidden;
     position: relative;
+    padding-block-end: 10vh;
 }
 
 .antwerp__img,
@@ -411,6 +412,7 @@ section .question {
     position: absolute;
     align-self: flex-end;
     margin-inline-end: -2rem;
+    margin-block-start: 5vh;
     max-width: 250px;
     top: 2rem;
 }
@@ -451,6 +453,7 @@ section .question {
     justify-content: center;
     align-items: center;
     padding-block-end: 5vh;
+    
 }
 
 .antwerp__interaction img {
@@ -469,7 +472,7 @@ section .question {
 
 
 .night {
-    background-image: url('../assets/background_night.png');
+    background-image: url('../assets/background_night.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     color: #FDF2E6;
@@ -555,7 +558,7 @@ section .question {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5vw;
+    gap: 1vw;
     padding-inline: 3vw;
 }
 
@@ -571,23 +574,42 @@ section .question {
     padding-block-end: 3vh;
 }
 
+.house__sign {
+    width: 110px;
+    height: 110.77px;
+    overflow: hidden;
+    position: relative;
+}
+
+.house__sign canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .house__text,
 .house__sign,
 .house .question,
 .house h2 {
-    display: none;
+    position: absolute;    
+    left: -9999px;         
+    pointer-events: none;  
+    transition: left 0.3s ease-in-out; 
 }
 
 .house.active .house__opening,
 .house.active .instructions {
-    display: none;
+    position: absolute;
+    left: -9999px;  
 }
 
 .house.active .house__text,
 .house.active .house__sign,
 .house.active .question,
 .house.active h2 {
-    display: block;
+    position: relative;  
+    left: 0;             
+    pointer-events: auto; 
 }
 
 
@@ -613,12 +635,30 @@ section .question {
     padding-block-end: 8vh;
 }
 
-.raid__antwerp img{
-    max-height: 275px;
+.antwerp__animation {
+    width: 320.38px;
+    height: 274px;
+    overflow: hidden;
+    position: relative;
 }
 
-.raid__paris img {
-    max-height: 275px;
+.antwerp__animation canvas{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.paris__animation {
+    width: 288.9px;
+    height: 275px;
+    overflow: hidden;
+    position: relative;
+}
+
+.paris__animation canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .raid__antwerp {
@@ -627,6 +667,7 @@ section .question {
     justify-content: center;
     align-items: center;
     gap: 2vh;
+    padding-block-end: 4vh;
 }
 
 .raid__paris {
@@ -635,10 +676,7 @@ section .question {
     justify-content: center;
     align-items: center;
     gap: 2vh;
-}
-
-.raid__paris {
-    display: none;
+    padding-block-end: 4vh;
 }
 
 .raid__switch {
@@ -654,12 +692,22 @@ section .question {
     transform: scaleX(-1);
 }
 
-.visible {
-    display: flex;
+.raid__paris {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-
-
+.visible {
+    position: relative;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
 
 
 
@@ -686,6 +734,11 @@ section .question {
     z-index: 1;
 }
 
+.single__canvas {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .single__black,
 .single__colour {
     position: absolute;
@@ -699,10 +752,13 @@ section .question {
 .single__colour {
     position: absolute;
     width: 100%;
-    opacity: 0;
+    opacity: 1;
+    /* Ensure the colored image is visible */
     z-index: 0;
-    transition: opacity 0.2s ease-out, clip-path 0.1s ease-out;
-    clip-path: circle(0% at 50% 50%);
+    mask-image: url('');
+    /* Will be set dynamically in JavaScript */
+    -webkit-mask-image: url('');
+    /* For Webkit browsers */
 }
 
 .botanic__flower,
@@ -759,24 +815,7 @@ section .question {
     transform: translateX(-50%);
     opacity: 1;
     transition: opacity 0.3s ease;
-    /*background-image: url('../assets/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;*/
 }
-
-/* .death__img::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('../assets/background.png');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-} */
 
 
 
@@ -1075,8 +1114,69 @@ button {
         max-width: 40vw;
         padding-inline-end: 4vw;
     }
+  
+    .night {
+        background-image: url('../assets/background_night_l.png');
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        grid-column-gap: 3vw;
+        grid-row-gap: 2vh;
+        min-height: auto;
+        max-height: auto;
+        overflow: hidden;
+    }
 
-    
+    .night h2 {
+        max-width: 60vw;
+        grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .paragraph1, .paragraph2 {
+        padding-block-start: 4vh;
+        align-self: flex-start;
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .night__plantin {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .attackers {
+        padding-block-start: 20vh;
+        width: 500px;
+    }
+
+
+
+
+
+    /* .raid__content {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .raid__switch {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1vh;
+    } */
+
+    .antwerp__animation {
+        width: 320.38px;
+        height: 274px;
+    }
+
+    .paris__animation {
+        width: 288.9px;
+        height: 275px;
+    }
+
+
+
+
+
+
 
 
     footer {

@@ -3,6 +3,9 @@ import "../css/style.css";
 
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 import cryingJson from "../animations/crying.json?url";
+import antwerpJson from "../animations/antwerp.json?url";
+import parisJson from "../animations/paris.json?url";
+import signJson from "../animations/sign.json?url";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -14,6 +17,28 @@ new DotLottie({
     canvas: document.querySelector(".title__baby canvas"),
     src: cryingJson,
 });
+
+new DotLottie({
+    autoplay: true,
+    loop: true,
+    canvas: document.querySelector(".house__sign canvas"),
+    src: signJson,
+});
+
+new DotLottie({
+    autoplay: true,
+    loop: true,
+    canvas: document.querySelector(".antwerp__animation canvas"),
+    src: antwerpJson,
+});
+
+new DotLottie({
+    autoplay: true,
+    loop: true,
+    canvas: document.querySelector(".paris__animation canvas"),
+    src: parisJson,
+});
+
 
 // const ring = document.querySelector('.antwerp__interaction img');
 // const hand = document.querySelector('.antwerp__img');
@@ -232,6 +257,7 @@ ring.addEventListener('mousedown', handleStartDrag);
 
 
 
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const plantinSmall = document.querySelector('.plantinSmall');
@@ -240,41 +266,67 @@ const attackers = document.querySelector('.attackers');
 const paragraph1 = document.querySelector('.paragraph1');
 const paragraph2 = document.querySelector('.paragraph2');
 
-gsap.timeline({
+const isLargeScreen = window.innerWidth >= 768;
+
+// Attackers animation based on screen size
+const attackersAnimation = gsap.timeline({
     scrollTrigger: {
         trigger: '.night',
-        start: 'top top',
+        start: isLargeScreen ? 'center center' : 'top top',  
         end: '+=300%',
         pin: true,
         scrub: true,
     },
-})
-    .fromTo(
-        attackers,
-        {
-            y: window.innerHeight + 100,
-            autoAlpha: 1,
-            rotate: 90,
-        },
-        {
-            y: 0,
-            autoAlpha: 1,
+});
+
+if (isLargeScreen) {
+    attackersAnimation
+        .fromTo(
+            attackers,
+            {
+                x: window.innerWidth + 100,
+                autoAlpha: 1,
+            },
+            {
+                x: 0,
+                autoAlpha: 1,
+                duration: 1,
+            }
+        )
+        .to(attackers, {
+            x: '-100vw',
+            autoAlpha: 0,
+            duration: 1,
+        });
+} else {
+    attackersAnimation
+        .fromTo(
+            attackers,
+            {
+                y: window.innerHeight + 100,
+                autoAlpha: 1,
+                rotate: 90,
+            },
+            {
+                y: 0,
+                autoAlpha: 1,
+                rotate: 90,
+                duration: 1,
+            }
+        )
+        .to(attackers, {
+            y: '-100vh',
+            autoAlpha: 0,
             rotate: 90,
             duration: 1,
-        }
-    )
-    .to(attackers, {
-        y: '-100vh',
-        autoAlpha: 0,
-        rotate: 90,
-        duration: 1,
-    });
+        });
+}
 
 gsap.timeline({
     scrollTrigger: {
         trigger: attackers,
-        start: 'top 10%',
-        end: 'bottom center',
+        start: isLargeScreen ? 'right -50%' : 'top 10%',
+        end: isLargeScreen ? 'left 150%' : 'bottom center',
         scrub: true,
     },
 })
@@ -285,8 +337,8 @@ gsap.timeline({
 
 ScrollTrigger.create({
     trigger: attackers,
-    start: 'top 75%',
-    end: 'top 60%',
+    start: isLargeScreen ? 'right 25%' : 'top 60%', 
+    end: isLargeScreen ? 'right 30%' : 'top 40%', 
     scrub: true,
     onEnter: () => {
         gsap.to(paragraph1, {
@@ -334,57 +386,112 @@ ScrollTrigger.create({
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const house = document.querySelector(".house");
-    const houseOpening = document.querySelector(".house__opening");
 
-    houseOpening.addEventListener("click", () => {
-        house.classList.add("active");
-    });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const antwerp = document.querySelector(".raid__antwerp");
-    const paris = document.querySelector(".raid__paris");
+const house = document.querySelector(".house");
+const houseOpening = document.querySelector(".house__opening");
 
-    antwerp.classList.add("visible");
+const handleClick = () => {
+    house.classList.add("active");
+};
 
-    antwerp.addEventListener("click", () => {
-        antwerp.classList.remove("visible");
-        paris.classList.add("visible");
-        antwerp.style.display = "none";
-        paris.style.display = "flex";
-    });
-
-    paris.addEventListener("click", () => {
-        paris.classList.remove("visible");
-        antwerp.classList.add("visible");
-        paris.style.display = "none";
-        antwerp.style.display = "flex";
-    });
-});
+houseOpening.addEventListener("click", handleClick);
+houseOpening.addEventListener("touchstart", handleClick); 
 
 
 
 
 
+const antwerp = document.querySelector(".raid__antwerp");
+const paris = document.querySelector(".raid__paris");
+const antwerpSwitch = document.querySelector(".raid__antwerp .raid__switch");
+const parisSwitch = document.querySelector(".raid__paris .raid__switch");
 
+antwerp.classList.add("visible");
+
+const toggleVisibility = (hideElement, showElement) => {
+    hideElement.classList.remove("visible");
+    showElement.classList.add("visible");
+    hideElement.style.display = "none";
+    showElement.style.display = "flex";
+};
+
+antwerpSwitch.addEventListener("click", () => toggleVisibility(antwerp, paris));
+antwerpSwitch.addEventListener("touchstart", () => toggleVisibility(antwerp, paris));
+
+parisSwitch.addEventListener("click", () => toggleVisibility(paris, antwerp));
+parisSwitch.addEventListener("touchstart", () => toggleVisibility(paris, antwerp));
+
+
+
+
+
+
+
+
+
+
+
+// const singleBlack = document.querySelector('.single__black');
+// const singleColour = document.querySelector('.single__colour');
+
+// let circles = []; // Array to store the positions of the circles
+
+// singleBlack.addEventListener('mousemove', (event) => {
+//     const { offsetX, offsetY } = event;
+//     const width = singleBlack.offsetWidth;
+//     const height = singleBlack.offsetHeight;
+
+//     // Convert mouse position to percentages
+//     const xPercent = (offsetX / width) * 100;
+//     const yPercent = (offsetY / height) * 100;
+
+//     // Add the new circle to the array
+//     circles.push(`circle(4% at ${xPercent}% ${yPercent}%)`);
+
+//     // Combine all circles into a single clip-path
+//     singleColour.style.clipPath = circles.join(', ');
+//     singleColour.style.opacity = 1; // Ensure the color image is visible
+// });
 
 
 const singleBlack = document.querySelector('.single__black');
 const singleColour = document.querySelector('.single__colour');
+const canvas = document.querySelector('.single__canvas');
+const ctx = canvas.getContext('2d');
 
+// Set canvas size to match the black-and-white image
+canvas.width = singleBlack.offsetWidth;
+canvas.height = singleBlack.offsetHeight;
+
+// Initialize the canvas as transparent
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Handle mouse movement over the black-and-white image
 singleBlack.addEventListener('mousemove', (event) => {
     const { offsetX, offsetY } = event;
-    const width = singleBlack.offsetWidth;
-    const height = singleBlack.offsetHeight;
 
-    const xPercent = offsetX / width * 100;
-    const yPercent = offsetY / height * 100;
+    // Draw a semi-transparent white circle on the canvas
+    ctx.globalCompositeOperation = 'source-over'; // Default blending mode
+    ctx.beginPath();
+    ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2); // Adjust circle size as needed
+    ctx.fillStyle = 'white'; // Semi-transparent white
+    ctx.fill();
+    ctx.closePath();
 
-    singleColour.style.opacity = 1;
-    singleColour.style.clipPath = `circle(4% at ${xPercent}% ${yPercent}%)`;
+    // Update the mask for the color image
+    updateMask();
 });
+
+function updateMask() {
+    // Convert the canvas to a data URL and apply it as a mask for the color image
+    const mask = canvas.toDataURL();
+    singleColour.style.maskImage = `url(${mask})`;
+    singleColour.style.webkitMaskImage = `url(${mask})`; // For Webkit browsers
+}
+
+
+
 
 
 
