@@ -87,7 +87,6 @@ const isTouchDevice = () => {
 
 const handleStartDrag = e => {
     const isTouchScreen = e.touches !== undefined;
-    console.log('handleStartDrag', isTouchScreen, e);
     window.addEventListener('touchmove', handleDragMove);
     window.addEventListener('mousemove', handleDragMove);
     window.addEventListener('touchend', handleStopDrag);
@@ -110,7 +109,6 @@ const handleDragMove = e => {
 
 const handleStopDrag = e => {
     const isTouchScreen = e.touches !== undefined;
-    console.log('handleStopDrag', isTouchScreen, e);
 
     const ringRect = ring.getBoundingClientRect();
     const handRect = hand.getBoundingClientRect();
@@ -120,7 +118,6 @@ const handleStopDrag = e => {
         ringRect.top < handRect.bottom &&
         ringRect.bottom > handRect.top
     ) {
-        console.log('Ring dropped on the hand!');
 
         hand.style.display = 'none';
         marriedHand.style.display = 'block';
@@ -130,7 +127,6 @@ const handleStopDrag = e => {
         document.querySelector('.moretus__heart').style.display = 'block';
 
     } else {
-        console.log('Ring dropped outside. Resetting position.');
         ring.style.left = `${initialPosition.left}px`;
         ring.style.top = `${initialPosition.top}px`;
     }
@@ -479,4 +475,59 @@ ScrollTrigger.create({
             ease: "power1.out",
         });
     },
+});
+
+
+
+let countingStarted = false;
+let sunToMoonChanged = false;
+let moonToDeathChanged = false;
+
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    const navbarTop = navbar.getBoundingClientRect().top;
+
+    if (navbarTop <= 0 && !countingStarted) {
+        countingStarted = true;
+    }
+
+    if (countingStarted) {
+        const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPosition = window.scrollY;
+        const newNumber = Math.max(48 - (scrollPosition / pageHeight) * 48, 0);
+        document.querySelector('.navbar p').textContent = Math.round(newNumber);
+    }
+
+    const nightSection = document.querySelector('.night');
+    const nightTop = nightSection.getBoundingClientRect().top;
+    const nightBottom = nightSection.getBoundingClientRect().bottom;
+
+    const deathSection = document.querySelector('.death');
+    const deathTop = deathSection.getBoundingClientRect().top;
+    const deathBottom = deathSection.getBoundingClientRect().bottom;
+
+    const offset = window.innerHeight / 2; 
+
+    if (nightTop <= offset && nightBottom >= 0 && !sunToMoonChanged) {
+        sunToMoonChanged = true;
+        moonToDeathChanged = false; 
+        document.querySelector('.nav__sun').style.display = 'none';
+        document.querySelector('.nav__moon').style.display = 'block';
+    }
+
+    if (deathTop <= offset && deathBottom >= 0 && !moonToDeathChanged) {
+        moonToDeathChanged = true; 
+        sunToMoonChanged = false; 
+        document.querySelector('.nav__sun').style.display = 'none';
+        document.querySelector('.nav__moon').style.display = 'block';
+    }
+
+    if ((nightTop > window.innerHeight || nightBottom < 0) &&
+        (deathTop > window.innerHeight || deathBottom < 0) &&
+        sunToMoonChanged) {
+        sunToMoonChanged = false;
+        moonToDeathChanged = false;
+        document.querySelector('.nav__moon').style.display = 'none';
+        document.querySelector('.nav__sun').style.display = 'block';
+    }
 });

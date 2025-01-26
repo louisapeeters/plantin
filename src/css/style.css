@@ -98,9 +98,44 @@ strong {
     color: var(--t-titles);
 }
 
+.navbar {
+    display: flex;
+    padding: 0.5vh;
+    position: sticky;
+    top: 0;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3vw;
+}
+
+.navbar p {
+    font-size: clamp(1.5rem, 2rem + 0.5vw, 2.5rem);
+    color: var(--t-primary);
+    font-weight: 100;
+}
+
+.nav__moon {
+    display: none;
+    max-width: 40px;
+}
+
+.nav__sun {
+    display: block;
+    max-width: 55px;
+}
+
+.logo {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
 .logo img {
-    max-width: 110px;
     padding-inline-start: 5vw;
+    max-width: 110px;
 }
 
 header {
@@ -940,6 +975,18 @@ button {
         font-size: clamp(1.2rem, 1.4rem + 0.2vw, 1.6rem);
     }
 
+    .navbar {
+        padding-inline-end: 1.5vw;
+    }
+
+    .nav__sun {
+        max-width: 75px;
+    }
+
+    .nav__moon {
+        max-width: 65px;
+    }
+
     .birth {
         gap: 0vh;
     }
@@ -1358,10 +1405,18 @@ button {
         padding-block-start: 3vh;
     }
 
+    .navbar img{
+        padding-inline-end: 1vw;
+    }
+
+    .navbar p {
+        font-size: clamp(3.9rem, 4rem + 0.2vw, 4.1rem);
+    }
+
     .logo img {
         padding-block-start: 0vh;
-        padding-inline-start: 3vw;
         max-width: 185px;
+        padding-inline-start: 3vw;
     }
 
     .hero {
@@ -1370,11 +1425,11 @@ button {
 
     .header__img img{
         max-width: 550px;
-        margin-inline-start: -2vw;
+        margin-inline-start: 0vw;
     }
 
     h1 {
-        margin-inline-start: -2vw;
+        margin-inline-start: -4vw;
         font-size: clamp(8.5rem, 9rem + 0.2vw, 9.5rem);
     }
 
@@ -1384,7 +1439,7 @@ button {
 
     .subtitle__text {
         font-size: clamp(6.7rem, 7rem + 0.2vw, 8rem);
-        margin-inline-start: 4vw;
+        margin-inline-start: 0vw;
     }
 
     .subtitle__text .red{
@@ -1395,8 +1450,8 @@ button {
 
     .subtitle__regular, .subtitle__semi {
         display: block; 
-        text-align: center;
-        margin-inline-end: 10vw;
+        text-align: left;
+        margin-inline-start: 10vw;
     }
 
     .subtitle__clock img {
@@ -1757,6 +1812,14 @@ button {
 }
 
 @media screen and (min-width: 1200px) {
+    .hero {
+        gap: 10rem;
+    }
+
+    .subtitle__clock {
+        margin-inline-start: 10rem;
+    }
+
     .botanic__poppy {
         position: relative;
         height: auto;
