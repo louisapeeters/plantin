@@ -9,10 +9,13 @@ import signJson from "../animations/sign.json?url";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
 
-new DotLottie({
-    autoplay: true,
+gsap.registerPlugin(ScrollToPlugin);
+
+const cryingAnimation = new DotLottie({
+    autoplay: false,
     loop: true,
     canvas: document.querySelector(".title__baby canvas"),
     src: cryingJson,
@@ -32,6 +35,45 @@ new DotLottie({
     src: parisJson,
 });
 
+const clock = document.querySelector(".subtitle__clock img");
+const clockInstructions = document.querySelector(".subtitle__clock .instructions");
+let clockPlaying = false;
+
+const firstSection = document.querySelector(".birth");
+
+const toggleAnimations = () => {
+    if (clockPlaying) {
+        gsap.killTweensOf(clock);
+        cryingAnimation.pause();
+        clockPlaying = false;
+        clockInstructions.textContent = "click the clock to start the day!";
+    } else {
+        gsap.to(clock, {
+            keyframes: [
+                { rotation: -10, duration: 0.15 },
+                { rotation: 10, duration: 0.3 },
+                { rotation: -10, duration: 0.3 },
+                { rotation: 0, duration: 0.15 }
+            ],
+            repeat: -1,
+            ease: "none"
+        });
+        cryingAnimation.play();
+        clockPlaying = true;
+        clockInstructions.textContent = "click the clock to stop the day!";
+
+        gsap.to(window, {
+            duration: 2,
+            scrollTo: {
+                y: firstSection,
+                offsetY: 50,
+            },
+            ease: "power2.inOut",
+        });
+    }
+};
+
+clock.addEventListener("click", toggleAnimations);
 
 // const ring = document.querySelector('.antwerp__interaction img');
 // const hand = document.querySelector('.antwerp__img');
@@ -450,7 +492,98 @@ parisSwitch.addEventListener("touchstart", () => toggleVisibility(paris, antwerp
 
 
 
+const TextInstructions = document.getElementById('instructions');
 
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    TextInstructions.textContent = 'Go over the woodcuts to colour them in.';
+} else {
+    TextInstructions.textContent = 'Hover over the woodcuts to colour them in.';
+}
+
+function setupCanvas(blackElement, colourElement, canvasElement) {
+    const ctx = canvasElement.getContext('2d');
+
+    canvasElement.width = blackElement.offsetWidth;
+    canvasElement.height = blackElement.offsetHeight;
+
+    ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+    let isTouching = false;
+    let lastTouchUpdate = 0;
+    let maskUpdateDelay = 50;
+
+    function draw(event) {
+        let offsetX, offsetY;
+
+        if (event.touches) {
+            const touch = event.touches[0];
+            const rect = canvasElement.getBoundingClientRect();
+            offsetX = touch.clientX - rect.left;
+            offsetY = touch.clientY - rect.top;
+        } else {
+            offsetX = event.offsetX;
+            offsetY = event.offsetY;
+        }
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.beginPath();
+        ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
+
+        updateMask();
+    }
+
+    function updateMask() {
+        const now = Date.now();
+
+        if (now - lastTouchUpdate > maskUpdateDelay) {
+            lastTouchUpdate = now;
+            const mask = canvasElement.toDataURL();
+            colourElement.style.maskImage = `url(${mask})`;
+            colourElement.style.webkitMaskImage = `url(${mask})`;
+        }
+    }
+
+    blackElement.addEventListener('mousemove', (event) => {
+        draw(event);
+    });
+
+    blackElement.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        isTouching = true;
+        draw(event);
+    });
+
+    blackElement.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        if (isTouching) {
+            draw(event);
+        }
+    });
+
+    blackElement.addEventListener('touchend', (event) => {
+        event.preventDefault();
+        isTouching = false;
+    });
+}
+
+// Set up canvases for single, flower, and poppy
+const singleBlack = document.querySelector('.single__black');
+const singleColour = document.querySelector('.single__colour');
+const singleCanvas = document.querySelector('.single__canvas');
+setupCanvas(singleBlack, singleColour, singleCanvas);
+
+const flowerBlack = document.querySelector('.flower__black');
+const flowerColour = document.querySelector('.flower__colour');
+const flowerCanvas = document.querySelector('.flower__canvas');
+setupCanvas(flowerBlack, flowerColour, flowerCanvas);
+
+const poppyBlack = document.querySelector('.poppy__black');
+const poppyColour = document.querySelector('.poppy__colour');
+const poppyCanvas = document.querySelector('.poppy__canvas');
+setupCanvas(poppyBlack, poppyColour, poppyCanvas);
 
 
 
@@ -510,83 +643,83 @@ parisSwitch.addEventListener("touchstart", () => toggleVisibility(paris, antwerp
 
 
 
-const TextInstructions = document.getElementById('instructions');
+// const TextInstructions = document.getElementById('instructions');
 
-if ('ontouchstart' in window || navigator.maxTouchPoints) {
-    TextInstructions.textContent = 'Go over the woodcuts to colour them in.';
-} else {
-    TextInstructions.textContent = 'Hover over the woodcuts to colour them in.';
-}
+// if ('ontouchstart' in window || navigator.maxTouchPoints) {
+//     TextInstructions.textContent = 'Go over the woodcuts to colour them in.';
+// } else {
+//     TextInstructions.textContent = 'Hover over the woodcuts to colour them in.';
+// }
 
-const singleBlack = document.querySelector('.single__black');
-const singleColour = document.querySelector('.single__colour');
-const canvas = document.querySelector('.single__canvas');
-const ctx = canvas.getContext('2d');
+// const singleBlack = document.querySelector('.single__black');
+// const singleColour = document.querySelector('.single__colour');
+// const canvas = document.querySelector('.single__canvas');
+// const ctx = canvas.getContext('2d');
 
-canvas.width = singleBlack.offsetWidth;
-canvas.height = singleBlack.offsetHeight;
+// canvas.width = singleBlack.offsetWidth;
+// canvas.height = singleBlack.offsetHeight;
 
-ctx.clearRect(0, 0, canvas.width, canvas.height);
+// ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-let isTouching = false;
-let lastTouchUpdate = 0;
-let maskUpdateDelay = 50; 
+// let isTouching = false;
+// let lastTouchUpdate = 0;
+// let maskUpdateDelay = 50; 
 
-function draw(event) {
-    let offsetX, offsetY;
+// function draw(event) {
+//     let offsetX, offsetY;
 
-    if (event.touches) {
-        const touch = event.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        offsetX = touch.clientX - rect.left;
-        offsetY = touch.clientY - rect.top;
-    } else {
-        offsetX = event.offsetX;
-        offsetY = event.offsetY;
-    }
+//     if (event.touches) {
+//         const touch = event.touches[0];
+//         const rect = canvas.getBoundingClientRect();
+//         offsetX = touch.clientX - rect.left;
+//         offsetY = touch.clientY - rect.top;
+//     } else {
+//         offsetX = event.offsetX;
+//         offsetY = event.offsetY;
+//     }
 
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.beginPath();
-    ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2);
-    ctx.fillStyle = 'white';
-    ctx.fill();
-    ctx.closePath();
+//     ctx.globalCompositeOperation = 'source-over';
+//     ctx.beginPath();
+//     ctx.arc(offsetX, offsetY, 20, 0, Math.PI * 2);
+//     ctx.fillStyle = 'white';
+//     ctx.fill();
+//     ctx.closePath();
 
-    updateMask();
-}
+//     updateMask();
+// }
 
-function updateMask() {
-    const now = Date.now();
+// function updateMask() {
+//     const now = Date.now();
 
-    if (now - lastTouchUpdate > maskUpdateDelay) {
-        lastTouchUpdate = now;
-        const mask = canvas.toDataURL();
-        singleColour.style.maskImage = `url(${mask})`;
-        singleColour.style.webkitMaskImage = `url(${mask})`;
-    }
-}
+//     if (now - lastTouchUpdate > maskUpdateDelay) {
+//         lastTouchUpdate = now;
+//         const mask = canvas.toDataURL();
+//         singleColour.style.maskImage = `url(${mask})`;
+//         singleColour.style.webkitMaskImage = `url(${mask})`;
+//     }
+// }
 
-singleBlack.addEventListener('mousemove', (event) => {
-    draw(event);
-});
+// singleBlack.addEventListener('mousemove', (event) => {
+//     draw(event);
+// });
 
-singleBlack.addEventListener('touchstart', (event) => {
-    event.preventDefault(); 
-    isTouching = true;
-    draw(event); 
-});
+// singleBlack.addEventListener('touchstart', (event) => {
+//     event.preventDefault(); 
+//     isTouching = true;
+//     draw(event); 
+// });
 
-singleBlack.addEventListener('touchmove', (event) => {
-    event.preventDefault(); 
-    if (isTouching) {
-        draw(event);
-    }
-});
+// singleBlack.addEventListener('touchmove', (event) => {
+//     event.preventDefault(); 
+//     if (isTouching) {
+//         draw(event);
+//     }
+// });
 
-singleBlack.addEventListener('touchend', (event) => {
-    event.preventDefault(); 
-    isTouching = false;
-});
+// singleBlack.addEventListener('touchend', (event) => {
+//     event.preventDefault(); 
+//     isTouching = false;
+// });
 
 
 

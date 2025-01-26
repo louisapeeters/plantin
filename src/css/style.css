@@ -103,6 +103,7 @@ section {
     font-size: clamp(1rem, 1.2rem + 0.2vw, 1.4rem);
     padding-inline: 1vw;
     padding-block: 1vh;
+    text-decoration: underline;
 }
 
 strong {
@@ -132,7 +133,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 1vh;
-    padding-block-start: 2vh;
+    padding-block-start: 1vh;
 }
 
 h1 {
@@ -171,7 +172,6 @@ h1 .red {
 }
 
 .subtitle__clock {
-    padding-block-start: 2vh;
     grid-area: 1 / 2 / 3 / 4;
     display: grid;
     grid-template-columns: 1fr;
@@ -208,7 +208,7 @@ h1 .red {
 }
 
 .subtitle__clock .instructions {
-    padding-block-start: 2vh;
+    padding-block-start: 1vh;
     grid-row: 2;
     grid-column: -3 / 4;
 }
@@ -540,6 +540,7 @@ section .question {
     text-align: center;
     z-index: 2;
     width: 100vw;
+    text-decoration: none;
 }
 
 .house h2 {
@@ -559,6 +560,13 @@ section .question {
 
 .house__text{
     padding-block-end: 5vh;
+    font-family: var(--f-general);
+    font-size: clamp(0.9rem, 1.1rem + 0.2vw, 1.1rem);
+    line-height: 140%;
+}
+
+.house__text p {
+    font-size: clamp(0.9rem, 1.1rem + 0.2vw, 1.1rem);
 }
 
 .house__text > :first-child{
@@ -650,8 +658,8 @@ section .question {
 }
 
 .paris__animation {
-    width: 288.9px;
-    height: 275px;
+    width: 287.75px;
+    height: 274px;
     overflow: hidden;
     position: relative;
 }
@@ -702,6 +710,10 @@ section .question {
     transition: opacity 0.3s ease;
 }
 
+.raid .instructions {
+    text-decoration: none;
+}
+
 .visible {
     position: relative;
     top: 0;
@@ -719,7 +731,7 @@ section .question {
     align-items: center;
     gap: 2vh;
     padding-block-start: 20vh;
-    cursor: url('../assets/brush.svg'), auto;
+    cursor: url('../assets/brush.png') 16 16, auto;
 }
 
 .botanic__single {
@@ -773,6 +785,7 @@ section .question {
 
 
 
+
 .death {
     position: relative;
     overflow: hidden;
@@ -805,13 +818,12 @@ section .question {
 
  .death img {
     max-width: 270px;
+    height: auto;
     position: sticky;
     top: 0;
     z-index: 1;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 1;
-    transition: opacity 0.3s ease;
 }
 
 
@@ -828,7 +840,7 @@ footer {
     text-align: center;
     gap: 2rem;
     padding-block-start: 3vh;
-    padding-block-end: 15vh;
+    /* padding-block-end: 15vh; */
 }
 
 footer img {
@@ -864,10 +876,28 @@ button {
     cursor: pointer;
     background-image: url('../assets/button.svg');
     background-size: 236px 49px;
-    margin-block-start: 4vh;
+}
+
+.footer__instructions {
+    text-decoration: underline;
+    padding-inline-end: 8vw;
+    padding-block-end: 3vh;
+    padding-block-start: 10vh;
+    align-self: flex-end;
+    color: var(--t-light);
+    font-size: 1.3rem;
 }
 
 @media screen and (max-width: 328px) {
+    .hero__subtitle {
+        padding-inline: 0vw;
+    }
+
+    .subtitle__clock {
+        padding-block-start: 4vh;
+        margin-inline-end: -2vw;
+    }
+
     .house__sign {
         margin-inline-start: -13vw;
     }
@@ -918,6 +948,10 @@ button {
 
     .subtitle__text {
         font-size: clamp(3.5rem, 4.3rem + 0.2vw, 4.3rem);
+    }
+
+    .hero {
+        padding-block-end: 5vh;
     }
 
     .hero__subtitle {
@@ -1047,6 +1081,7 @@ button {
     }
 
     .antwerp__text {
+        padding-block-start: 2vh;
         padding-inline-start: 25vw;
     }
 
@@ -1179,6 +1214,10 @@ button {
         padding-block-end: 3vh;
     }
 
+    .house__text p{
+        font-size: clamp(1rem, 1.25rem + 0.2vw, 1.25rem);
+    }
+
     .house__text > :first-child {
         padding-block-end: 1vh;
     }
@@ -1201,9 +1240,6 @@ button {
         margin-inline-start: 4vw;
     }
 
-
-
-
     /* .raid__content {
         display: flex;
         flex-direction: row-reverse;
@@ -1217,6 +1253,11 @@ button {
 
     .raid__text {
         padding-block-end: 2vh;
+        gap: 1vh;
+    }
+
+    .raid__text p{
+        font-size: clamp(1rem, 1.25rem + 0.2vw, 1.25rem);
     }
 
     .raid .question {
@@ -1233,12 +1274,73 @@ button {
         height: 275px;
     }
 
+    .death img {
+        min-width: 500px;
+        height: auto;
+    }
 
+    .death__sheet {
+        background-image: url('../assets/sheet.jpg');
+    }
 
+    .botanic__content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2vh;
+    }
 
+    .botanic__single { 
+        margin-inline-start: -30vw;
+    }
 
+    .botanic__single img,
+    .botanic__single canvas {
+        max-width: 400px;
+    }
 
+    .botanic__flower {
+        position: relative;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-inline-start: -2vw;
+    }
 
+    .botanic__flower img,
+    .botanic__flower canvas {
+        max-width: 250px;
+    }
+
+    .flower__canvas {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .flower__black,
+    .flower__colour{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: auto;
+    }
+
+    .flower__colour{
+        mask-image: url('');
+        -webkit-mask-image: url('');
+    }
+
+    .large__instructions {
+        display: block;
+        align-self: flex-end;
+    }
+
+    .small__instructions {
+        display: none;
+    }
 
     footer {
         padding-block-start: 4vh;
@@ -1266,9 +1368,21 @@ button {
         margin-block-start: 5vh;
         padding-inline: 3vw;
     }
+
+    .footer__instructions {
+        font-size: 1.5rem;
+        padding-block-end: 4.5vh;
+    }
 }
 
 @media screen and (min-width: 1024px) {
+    
+
+
+
+
+
+
     footer {
         padding-block-start: 4vh;
         gap: 2rem;

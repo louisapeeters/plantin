@@ -307,51 +307,55 @@
         </picture>
       </div>
       <p class="small__instructions instructions" id="instructions">hover over the woodcuts to colour them in</p>
-      <div class="botanic__flower">
-        <picture class="flower__colour">
-          <img sizes="(max-width: 356px) 100vw, 356px" srcset="
-                ./src/assets/flower_colour_taqodz_c_scale,w_200.avif 200w,
-                ./src/assets/flower_colour_taqodz_c_scale,w_260.avif 260w,
-                ./src/assets/flower_colour_taqodz_c_scale,w_336.avif 336w,
-                ./src/assets/flower_colour_taqodz_c_scale,w_356.avif 356w"
-            src="./src/assets/flower_colour_taqodz_c_scale,w_356.avif" alt="coloured print of a plant">
-        </picture>
-        <picture class="flower__black">
-          <img sizes="(max-width: 356px) 100vw, 356px" srcset="
-        ./src/assets/flower_black_dzkpha_c_scale,w_200.avif 200w,
-        ./src/assets/flower_black_dzkpha_c_scale,w_265.avif 265w,
-        ./src/assets/flower_black_dzkpha_c_scale,w_336.avif 336w,
-        ./src/assets/flower_black_dzkpha_c_scale,w_356.avif 356w" src="./src/assets/flower_black_dzkpha_c_scale,w_356.avif" alt="black and white print of a plant">
-        </picture>
-      </div>
-      <p class="botanic__text">Plantin pours his energy into the <strong>monumental botanical</strong> and technical
-        masterpiece, Dodoens's botanical book. The
-        <strong>illustrations</strong> in these books are extraordinary, what started as a modest 1,309
-        <strong>woodcuts</strong> gets cranked up to a staggering
-        2,178, because who's counting? These aren't just books; they're the 16th-century equivalent of NFTs—except these
-        actually serve a purpose. The books are so <strong>valuable</strong>, uncoloured editions are priced at eight
-        guilders, and the
-        hand-coloured versions go for an eye-watering <strong>118 guilders</strong>. <br>
-        Why the high price? Well, the painstaking manual colouring process adds value, making them a
-        <strong>luxury</strong> far beyond the reach
-        of your average worker—unless they were paid hush money by the 16th-century version of Donald Trump.
-      </p>
-      <div class="botanic__poppy">
-        <picture>
-          <img sizes="(max-width: 336px) 100vw, 336px" srcset="
-                ./src/assets/poppy_colour_pj3tkw_c_scale,w_180.avif 180w,
-                ./src/assets/poppy_colour_pj3tkw_c_scale,w_238.avif 238w,
-                ./src/assets/poppy_colour_pj3tkw_c_scale,w_316.avif 316w,
-                ./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif 336w"
-            src="./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif" alt="coloured print of a plant">
-        </picture>
-        <picture class="poppy__black">
-          <img sizes="(max-width: 336px) 100vw, 336px" srcset="
-        ./src/assets/poppy_black_vhas30_c_scale,w_180.avif 180w,
-        ./src/assets/poppy_black_vhas30_c_scale,w_248.avif 248w,
-        ./src/assets/poppy_black_vhas30_c_scale,w_304.avif 304w,
-        ./src/assets/poppy_black_vhas30_c_scale,w_336.avif 336w" src="./src/assets/poppy_black_vhas30_c_scale,w_336.avif" alt="black and white print of a plant">
-        </picture>
+      <div class="botanic__content">
+        <div class="botanic__flower">
+          <picture class="flower__colour">
+            <img sizes="(max-width: 356px) 100vw, 356px" srcset="
+                  ./src/assets/flower_colour_taqodz_c_scale,w_200.avif 200w,
+                  ./src/assets/flower_colour_taqodz_c_scale,w_260.avif 260w,
+                  ./src/assets/flower_colour_taqodz_c_scale,w_336.avif 336w,
+                  ./src/assets/flower_colour_taqodz_c_scale,w_356.avif 356w"
+              src="./src/assets/flower_colour_taqodz_c_scale,w_356.avif" alt="coloured print of a plant">
+          </picture>
+          <canvas class="flower__canvas"></canvas>
+          <picture class="flower__black">
+            <img sizes="(max-width: 356px) 100vw, 356px" srcset="
+          ./src/assets/flower_black_dzkpha_c_scale,w_200.avif 200w,
+          ./src/assets/flower_black_dzkpha_c_scale,w_265.avif 265w,
+          ./src/assets/flower_black_dzkpha_c_scale,w_336.avif 336w,
+          ./src/assets/flower_black_dzkpha_c_scale,w_356.avif 356w" src="./src/assets/flower_black_dzkpha_c_scale,w_356.avif" alt="black and white print of a plant">
+          </picture>
+        </div>
+        <p class="botanic__text">Plantin pours his energy into the <strong>monumental botanical</strong> and technical
+          masterpiece, Dodoens's botanical book. The
+          <strong>illustrations</strong> in these books are extraordinary, what started as a modest 1,309
+          <strong>woodcuts</strong> gets cranked up to a staggering
+          2,178, because who's counting? These aren't just books; they're the 16th-century equivalent of NFTs—except these
+          actually serve a purpose. The books are so <strong>valuable</strong>, uncoloured editions are priced at eight
+          guilders, and the
+          hand-coloured versions go for an eye-watering <strong>118 guilders</strong>. <br>
+          Why the high price? Well, the painstaking manual colouring process adds value, making them a
+          <strong>luxury</strong> far beyond the reach
+          of your average worker—unless they were paid hush money by the 16th-century version of Donald Trump.
+        </p>
+        <div class="botanic__poppy">
+          <picture>
+            <img sizes="(max-width: 336px) 100vw, 336px" srcset="
+                  ./src/assets/poppy_colour_pj3tkw_c_scale,w_180.avif 180w,
+                  ./src/assets/poppy_colour_pj3tkw_c_scale,w_238.avif 238w,
+                  ./src/assets/poppy_colour_pj3tkw_c_scale,w_316.avif 316w,
+                  ./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif 336w"
+              src="./src/assets/poppy_colour_pj3tkw_c_scale,w_336.avif" alt="coloured print of a plant">
+          </picture>
+          <canvas class="poppy__canvas"></canvas>
+          <picture class="poppy__black">
+            <img sizes="(max-width: 336px) 100vw, 336px" srcset="
+          ./src/assets/poppy_black_vhas30_c_scale,w_180.avif 180w,
+          ./src/assets/poppy_black_vhas30_c_scale,w_248.avif 248w,
+          ./src/assets/poppy_black_vhas30_c_scale,w_304.avif 304w,
+          ./src/assets/poppy_black_vhas30_c_scale,w_336.avif 336w" src="./src/assets/poppy_black_vhas30_c_scale,w_336.avif" alt="black and white print of a plant">
+          </picture>
+        </div>
       </div>
         <p class="large__instructions instructions" id="instructions">hover over the woodcuts to colour them in</p>
     </section>
@@ -400,11 +404,15 @@
       special activities for
       families, but with our large archive it's also the perfect place for researchers, curious or history savvy people!
     </p>
-    <a href="https://ttk.recreatex.be/Exhibitions/Register?ID=193d593e-f57a-ed11-9592-a48785620fa0&refresh=y&language=en" aria-label="order your tickets for the plantin-moretus museum"></a>
+    <a href="https://ttk.recreatex.be/Exhibitions/Register?ID=193d593e-f57a-ed11-9592-a48785620fa0&refresh=y&language=en"
+      aria-label="Order your tickets for the Plantin-Moretus museum">
       <button class="button">
-        order tickets
+        Order tickets
       </button>
     </a>
+    <div class="instructions footer__instructions"> 
+      <p>-> read the other stories</p>
+    </div>
   </footer>
 
   <script src="./src/js/script.js" type="module"></script>
